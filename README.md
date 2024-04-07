@@ -1,5 +1,5 @@
 # Giftify
-> Outline a brief description of your project.
+> Giftify is a comprehensive gifting platform that enables users to create, share, and exchange wishlists for various occasions. With a focus on user engagement, convenience, and community interaction, Giftify aims to revolutionize the way people celebrate special events and share meaningful gifts with friends, family, and colleagues.
 > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
