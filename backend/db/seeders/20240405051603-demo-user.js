@@ -15,7 +15,7 @@ module.exports = {
         [
           {
             email: 'demo@user.io',
-            username: 'demo',
+            username: 'Demo-lition',
             hashedPassword: bcrypt.hashSync('password'),
             firstName: 'Demo',
             lastName: 'User',
@@ -24,17 +24,17 @@ module.exports = {
               'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
           },
           {
-            email: 'ramon@user.io',
-            username: 'ramon',
-            hashedPassword: bcrypt.hashSync('password'),
+            email: 'user1@user.io',
+            username: 'FakeUser1',
+            hashedPassword: bcrypt.hashSync('password2'),
             firstName: null,
             lastName: null,
             bio: null,
             imgUrl: null,
           },
           {
-            email: 'user@user.io',
-            username: 'fakeUser',
+            email: 'user2@user.io',
+            username: 'FakeUser2',
             hashedPassword: bcrypt.hashSync('password3'),
             firstName: null,
             lastName: null,
@@ -56,7 +56,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        username: { [Op.in]: ['demo', 'ramon', 'fakeUser'] },
+        username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] },
       },
       {}
     );
