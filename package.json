@@ -1,7 +1,7 @@
 {
   "name": "giftify",
   "version": "1.0.0",
-  "description": "> Outline a brief description of your project. > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->",
+  "description": "> Giftify is a user-friendly platform revolutionizing gifting. Users can easily create, share, and exchange wishlists for any occasion, fostering community engagement and enhancing the gifting experience. > Live demo [_here_](https://www.example.com).",
   "main": "index.js",
   "scripts": {
     "install": "npm --prefix backend install backend",
@@ -12,6 +12,6 @@
     "build": "npm run --prefix backend build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Ramon Barros",
+  "license": "Proprietary - All Rights Reserved"
 }
