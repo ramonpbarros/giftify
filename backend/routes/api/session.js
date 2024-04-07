@@ -19,6 +19,7 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
+// Log in
 router.post('/', validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
 
@@ -46,7 +47,7 @@ router.post('/', validateLogin, async (req, res, next) => {
     email: user.email,
     username: user.username,
     bio: user.bio,
-    img_url: user.img_url,
+    imgUrl: user.imgUrl,
   };
 
   await setTokenCookie(res, safeUser);
@@ -68,8 +69,12 @@ router.get('/', (req, res) => {
   if (user) {
     const safeUser = {
       id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       username: user.username,
+      bio: user.bio,
+      imgUrl: user.imgUrl,
     };
     return res.json({
       user: safeUser,

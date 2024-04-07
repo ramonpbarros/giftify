@@ -19,31 +19,36 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await User.bulkCreate(
-      [
-        {
-          email: 'demo@user.io',
-          username: 'demo',
-          hashedPassword: bcrypt.hashSync('password'),
-          firstName: 'Demo',
-          lastName: 'User',
-          bio: 'This is a demo user account.',
-          imgUrl:
-            'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
-        },
-        {
-          email: 'ramon@user.io',
-          username: 'ramon',
-          hashedPassword: bcrypt.hashSync('password'),
-        },
-        {
-          email: 'user@user.io',
-          username: 'fakeUser',
-          hashedPassword: bcrypt.hashSync('password3'),
-        },
-      ],
-      { validate: true }
-    );
+    try {
+      await User.bulkCreate(
+        [
+          {
+            email: 'demo@user.io',
+            username: 'demo',
+            hashedPassword: bcrypt.hashSync('password'),
+            firstName: 'Demo',
+            lastName: 'User',
+            bio: 'This is a demo user account.',
+            imgUrl:
+              'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
+          },
+          {
+            email: 'ramon@user.io',
+            username: 'ramon',
+            hashedPassword: bcrypt.hashSync('password'),
+          },
+          {
+            email: 'user@user.io',
+            username: 'fakeUser',
+            hashedPassword: bcrypt.hashSync('password3'),
+          },
+        ],
+        { validate: true }
+      );
+    } catch (error) {
+      console.error('Error during bulkCreate:', error);
+      throw error;
+    }
   },
 
   async down(queryInterface, Sequelize) {
