@@ -11,7 +11,17 @@
     "start": "npm start --prefix backend",
     "build": "npm run --prefix backend build"
   },
-  "keywords": [],
-  "author": "Ramon Barros",
+  "keywords": [
+    "gift",
+    "wishlist",
+    "community",
+    "gifting",
+    "engagement"
+  ],
+  "author": {
+    "name": "Ramon Barros",
+    "email": "ramonpbarros@gmail.com",
+    "url": "https://github.com/ramonpbarros"
+  },
   "license": "Proprietary - All Rights Reserved"
 }
