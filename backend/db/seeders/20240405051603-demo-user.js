@@ -17,8 +17,8 @@ module.exports = {
             email: 'demo@user.io',
             username: 'Demo-lition',
             hashedPassword: bcrypt.hashSync('password'),
-            firstName: 'Demo',
-            lastName: 'User',
+            firstName: 'demonName1',
+            lastName: 'demonLast1',
             bio: 'This is a demo user account.',
             imgUrl:
               'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
