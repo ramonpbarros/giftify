@@ -10,44 +10,39 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    try {
-      await User.bulkCreate(
-        [
-          {
-            email: 'demo@user.io',
-            username: 'Demo-lition',
-            hashedPassword: bcrypt.hashSync('password'),
-            firstName: 'demonName1',
-            lastName: 'demonLast1',
-            bio: 'This is a demo user account.',
-            imgUrl:
-              'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
-          },
-          {
-            email: 'user1@user.io',
-            username: 'FakeUser1',
-            hashedPassword: bcrypt.hashSync('password2'),
-            firstName: null,
-            lastName: null,
-            bio: null,
-            imgUrl: null,
-          },
-          {
-            email: 'user2@user.io',
-            username: 'FakeUser2',
-            hashedPassword: bcrypt.hashSync('password3'),
-            firstName: null,
-            lastName: null,
-            bio: null,
-            imgUrl: null,
-          },
-        ],
-        { validate: true }
-      );
-    } catch (error) {
-      console.error('Error during bulkCreate:', error);
-      throw error;
-    }
+    await User.bulkCreate(
+      [
+        {
+          email: 'demo@user.io',
+          firstName: 'demonName1',
+          lastName: 'demonLast1',
+          username: 'Demo-lition',
+          bio: 'This is a demo user account.',
+          imgUrl:
+            'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
+          hashedPassword: bcrypt.hashSync('password'),
+        },
+        {
+          email: 'user1@user.io',
+          firstName: null,
+          lastName: null,
+          username: 'FakeUser1',
+          bio: null,
+          imgUrl: null,
+          hashedPassword: bcrypt.hashSync('password2'),
+        },
+        {
+          email: 'user2@user.io',
+          firstName: null,
+          lastName: null,
+          username: 'FakeUser2',
+          bio: null,
+          imgUrl: null,
+          hashedPassword: bcrypt.hashSync('password3'),
+        },
+      ],
+      { validate: true }
+    );
   },
 
   async down(queryInterface, Sequelize) {
