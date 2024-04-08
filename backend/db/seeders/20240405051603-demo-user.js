@@ -23,24 +23,24 @@ module.exports = {
             imgUrl:
               'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711074668/landpage_rewards_card_enp3fm.png',
           },
-          {
-            email: 'user1@user.io',
-            username: 'FakeUser1',
-            hashedPassword: bcrypt.hashSync('password2'),
-            firstName: null,
-            lastName: null,
-            bio: null,
-            imgUrl: null,
-          },
-          {
-            email: 'user2@user.io',
-            username: 'FakeUser2',
-            hashedPassword: bcrypt.hashSync('password3'),
-            firstName: null,
-            lastName: null,
-            bio: null,
-            imgUrl: null,
-          },
+          // {
+          //   email: 'user1@user.io',
+          //   username: 'FakeUser1',
+          //   hashedPassword: bcrypt.hashSync('password2'),
+          //   firstName: null,
+          //   lastName: null,
+          //   bio: null,
+          //   imgUrl: null,
+          // },
+          // {
+          //   email: 'user2@user.io',
+          //   username: 'FakeUser2',
+          //   hashedPassword: bcrypt.hashSync('password3'),
+          //   firstName: null,
+          //   lastName: null,
+          //   bio: null,
+          //   imgUrl: null,
+          // },
         ],
         { validate: true }
       );
