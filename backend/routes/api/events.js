@@ -148,73 +148,91 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
     private,
   });
 
-  let currentNewEvent = newEvent.toJSON();
+  let formattedEvent = newEvent.toJSON();
 
-  const newTimeUpdatedAt = new Date(currentNewEvent.updatedAt)
+  const newTimeUpdatedAt = new Date(formattedEvent.updatedAt)
     .toISOString()
     .split('')
     .slice(11, 19)
     .join('');
 
-  const newDateUpdatedAt = new Date(currentNewEvent.updatedAt)
+  const newDateUpdatedAt = new Date(formattedEvent.updatedAt)
     .toISOString()
     .split('T')[0];
 
-  const newTimeCreatedAt = new Date(currentNewEvent.createdAt)
+  const newTimeCreatedAt = new Date(formattedEvent.createdAt)
     .toISOString()
     .split('')
     .slice(11, 19)
     .join('');
 
-  const newDateCreatedAt = new Date(currentNewEvent.createdAt)
+  const newDateCreatedAt = new Date(formattedEvent.createdAt)
+    .toISOString()
+    .split('T')[0];
+
+  const newDateEventDate = new Date(formattedEvent.eventDate)
     .toISOString()
     .split('T')[0];
 
   delete formattedEvent.createdAt;
   delete formattedEvent.updatedAt;
+  delete formattedEvent.eventDate;
 
-  currentNewEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
-  currentNewEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+  formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+  formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+  formattedEvent.eventDate = `${newDateEventDate}`;
 
-  res.status(201).json(currentNewEvent);
+  res.status(201).json(formattedEvent);
 });
 
 // Edit the Current User's Event
-router.put('/:eventId', requireAuth, validateEditEvent, async (req, res) => {
-  const event = await Event.findByPk(req.params.eventId);
+router.put(
+  '/:eventId',
+  requireAuth,
+  isAuthorized,
+  validateEditEvent,
+  async (req, res) => {
+    const event = await Event.findByPk(req.params.eventId);
 
-  const eventUpdated = await event.update(req.body);
+    const eventUpdated = await event.update(req.body);
 
-  let currentEvent = eventUpdated.toJSON();
+    let formattedEvent = eventUpdated.toJSON();
 
-  const newTimeUpdatedAt = new Date(currentEvent.updatedAt)
-    .toISOString()
-    .split('')
-    .slice(11, 19)
-    .join('');
+    const newTimeUpdatedAt = new Date(formattedEvent.updatedAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
 
-  const newDateUpdatedAt = new Date(currentEvent.updatedAt)
-    .toISOString()
-    .split('T')[0];
+    const newDateUpdatedAt = new Date(formattedEvent.updatedAt)
+      .toISOString()
+      .split('T')[0];
 
-  const newTimeCreatedAt = new Date(currentEvent.createdAt)
-    .toISOString()
-    .split('')
-    .slice(11, 19)
-    .join('');
+    const newTimeCreatedAt = new Date(formattedEvent.createdAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
 
-  const newDateCreatedAt = new Date(currentEvent.createdAt)
-    .toISOString()
-    .split('T')[0];
+    const newDateCreatedAt = new Date(formattedEvent.createdAt)
+      .toISOString()
+      .split('T')[0];
 
-  delete formattedEvent.createdAt;
-  delete formattedEvent.updatedAt;
+    const newDateEventDate = new Date(formattedEvent.eventDate)
+      .toISOString()
+      .split('T')[0];
 
-  currentEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
-  currentEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+    delete formattedEvent.createdAt;
+    delete formattedEvent.updatedAt;
+    delete formattedEvent.eventDate;
 
-  res.json(currentEvent);
-});
+    formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+    formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+    formattedEvent.eventDate = `${newDateEventDate}`;
+
+    res.json(formattedEvent);
+  }
+);
 
 // Delete the Current User's Event
 router.delete('/:eventId', requireAuth, isAuthorized, async (req, res) => {
