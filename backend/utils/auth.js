@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Event } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -68,6 +68,32 @@ const requireAuth = function (req, _res, next) {
   err.errors = { message: 'Authentication required' };
   err.status = 401;
   return next(err);
-}
+};
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+// Require proper authorization: Spot must belong to the current user
+const isAuthorized = async function (req, _res, next) {
+  const currentUser = req.user.toJSON();
+  const eventId = req.params.eventId;
+
+  if (eventId) {
+    const event = await Event.findByPk(eventId);
+
+    if (!event) {
+      const err = new Error();
+      err.message = "Event couldn't be found";
+      err.status = 404;
+      return next(err);
+    }
+
+    if (currentUser.id === event.userId) {
+      return next();
+    } else if (event.userId !== currentUser.id) {
+      const err = new Error();
+      err.message = 'Forbidden';
+      err.status = 403;
+      return next(err);
+    }
+  }
+};
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, isAuthorized };

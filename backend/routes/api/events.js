@@ -1,6 +1,10 @@
 const express = require('express');
 const { Event, User } = require('../../db/models');
-const { requireAuth } = require('../../utils/auth');
+const { requireAuth, isAuthorized } = require('../../utils/auth');
+const {
+  validateCreateEvent,
+  validateEditEvent,
+} = require('../../utils/sequelize-validations');
 
 const router = express.Router();
 
@@ -131,7 +135,7 @@ router.get('/:eventId', requireAuth, async (req, res) => {
 });
 
 // Create Event for the Current User
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
   const { eventName, eventDescription, eventDate, private } = req.body;
 
   const currentUser = req.user.toJSON();
@@ -173,6 +177,54 @@ router.post('/', requireAuth, async (req, res) => {
   currentNewEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
 
   res.status(201).json(currentNewEvent);
+});
+
+// Edit the Current User's Event
+router.put('/:eventId', requireAuth, validateEditEvent, async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  const eventUpdated = await event.update(req.body);
+
+  let currentEvent = eventUpdated.toJSON();
+
+  const newTimeUpdatedAt = new Date(currentEvent.updatedAt)
+    .toISOString()
+    .split('')
+    .slice(11, 19)
+    .join('');
+
+  const newDateUpdatedAt = new Date(currentEvent.updatedAt)
+    .toISOString()
+    .split('T')[0];
+
+  const newTimeCreatedAt = new Date(currentEvent.createdAt)
+    .toISOString()
+    .split('')
+    .slice(11, 19)
+    .join('');
+
+  const newDateCreatedAt = new Date(currentEvent.createdAt)
+    .toISOString()
+    .split('T')[0];
+
+  delete formattedEvent.createdAt;
+  delete formattedEvent.updatedAt;
+
+  currentEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+  currentEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+
+  res.json(currentEvent);
+});
+
+// Delete the Current User's Event
+router.delete('/:eventId', requireAuth, isAuthorized, async (req, res) => {
+  const event = await Event.findByPk(req.params.eventId);
+
+  await event.destroy();
+
+  res.json({
+    message: 'Successfully deleted',
+  });
 });
 
 module.exports = router;
