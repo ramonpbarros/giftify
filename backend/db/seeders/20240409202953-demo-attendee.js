@@ -14,17 +14,32 @@ module.exports = {
         {
           userId: 1,
           eventId: 1,
-          status: true,
+          status: 'attending',
         },
         {
           userId: 1,
           eventId: 2,
-          status: true,
+          status: 'attending',
         },
         {
           userId: 2,
           eventId: 1,
-          status: false,
+          status: 'pending',
+        },
+        {
+          userId: 2,
+          eventId: 3,
+          status: 'attending',
+        },
+        {
+          userId: 2,
+          eventId: 4,
+          status: 'attending',
+        },
+        {
+          userId: 3,
+          eventId: 5,
+          status: 'attending',
         },
       ]);
     } catch (error) {
