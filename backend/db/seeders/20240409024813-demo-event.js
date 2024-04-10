@@ -36,6 +36,30 @@ module.exports = {
             'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711245334/frame_one_uf6eoa.jpg',
         },
         {
+          userId: 2,
+          eventName: 'Work Secret Buddy',
+          eventDate: '2024-12-13',
+          eventDescription:
+            'A fun Secret Buddy event where participants exchange gifts anonymously.',
+          maxGiftCost: null,
+          maxAttendees: 2,
+          private: true,
+          imgUrl:
+            'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711245334/frame_one_uf6eoa.jpg',
+        },
+        {
+          userId: 2,
+          eventName: 'Work Secret Buddy 2',
+          eventDate: '2024-12-12',
+          eventDescription:
+            'A fun Secret Buddy event where participants exchange gifts anonymously. 2',
+          maxGiftCost: null,
+          maxAttendees: null,
+          private: true,
+          imgUrl:
+            'https://res.cloudinary.com/drv1e8rjp/image/upload/v1711245334/frame_one_uf6eoa.jpg',
+        },
+        {
           userId: 3,
           eventName: 'Family Secret Santa',
           eventDate: '2024-12-24',

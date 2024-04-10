@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       Event.belongsTo(models.User, {
         foreignKey: 'userId',
       });
+
+      Event.hasMany(models.Attendee, {
+        foreignKey: 'eventId'
+      })
     }
   }
   Event.init(
