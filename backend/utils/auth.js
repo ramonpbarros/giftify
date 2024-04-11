@@ -70,7 +70,7 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 };
 
-// Require proper authorization: Spot must belong to the current user
+// Require proper authorization: must belong to the current user
 const isAuthorized = async function (req, _res, next) {
   const currentUser = req.user.toJSON();
   const eventId = req.params.eventId;

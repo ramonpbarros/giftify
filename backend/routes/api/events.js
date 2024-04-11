@@ -206,9 +206,9 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
   delete formattedEvent.updatedAt;
   delete formattedEvent.eventDate;
 
+  formattedEvent.eventDate = `${newDateEventDate}`;
   formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
   formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
-  formattedEvent.eventDate = `${newDateEventDate}`;
 
   res.status(201).json(formattedEvent);
 });
@@ -373,7 +373,6 @@ router.get('/:eventId/attendees', requireAuth, async (req, res) => {
 
 // Request to Attend an Event based on the Event's id
 router.post('/:eventId/attendance', requireAuth, async (req, res) => {
-  // const currentUser = req.user.toJSON();
   const userId = req.user.id;
   const eventId = req.params.eventId;
 
