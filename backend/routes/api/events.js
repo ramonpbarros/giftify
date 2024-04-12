@@ -81,9 +81,7 @@ router.get('/', requireAuth, async (req, res) => {
 
 // Get details of an Event specified by its id
 router.get('/:eventId', requireAuth, async (req, res) => {
-  const event = await Event.findByPk(req.params.eventId, {
-    // include: [{ model: Attendee }],
-  });
+  const event = await Event.findByPk(req.params.eventId);
 
   if (!event) {
     res.status(404);
@@ -104,8 +102,23 @@ router.get('/:eventId', requireAuth, async (req, res) => {
     },
   });
 
-  const formattedUser = user.toJSON();
+  for (const attendee of attendees) {
+    const wishlist = await Wishlist.findAll({
+      where: {
+        eventId: req.params.eventId,
+        attendeeId: attendee.userId,
+      },
+    });
 
+    if (wishlist.length > 0) {
+      const formattedWishlist = {
+        id: wishlist[0].id,
+      };
+      attendee.User.dataValues.Wishlist = formattedWishlist;
+    }
+  }
+
+  const formattedUser = user.toJSON();
   const formattedEvent = event.toJSON();
 
   const newTimeUpdatedAt = new Date(formattedEvent.updatedAt)
@@ -136,11 +149,13 @@ router.get('/:eventId', requireAuth, async (req, res) => {
   delete formattedEvent.updatedAt;
   delete formattedEvent.eventDate;
 
-  (formattedEvent.Attendees = attendees.map((attendee) => ({
+  formattedEvent.Attendees = attendees.map((attendee) => ({
     id: attendee.User.id,
     username: attendee.User.username,
-  }))),
-    (formattedEvent.Organizer = formattedUser);
+    Wishlist: attendee.User.dataValues.Wishlist || null,
+  }));
+
+  formattedEvent.Organizer = formattedUser;
   formattedEvent.eventDate = `${newDateEventDate}`;
   formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
   formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;

@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           attendeeId: 2,
-          eventId: 2,
+          eventId: 1,
         },
         {
           attendeeId: 4,
