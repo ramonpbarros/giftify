@@ -1,5 +1,5 @@
 const express = require('express');
-const { Event, User, Attendee } = require('../../db/models');
+const { Event, User, Attendee, Wishlist } = require('../../db/models');
 const { requireAuth, isAuthorized, restoreUser } = require('../../utils/auth');
 const {
   validateCreateEvent,
@@ -81,9 +81,7 @@ router.get('/', requireAuth, async (req, res) => {
 
 // Get details of an Event specified by its id
 router.get('/:eventId', requireAuth, async (req, res) => {
-  const event = await Event.findByPk(req.params.eventId, {
-    // include: [{ model: Attendee }],
-  });
+  const event = await Event.findByPk(req.params.eventId);
 
   if (!event) {
     res.status(404);
@@ -104,8 +102,23 @@ router.get('/:eventId', requireAuth, async (req, res) => {
     },
   });
 
-  const formattedUser = user.toJSON();
+  for (const attendee of attendees) {
+    const wishlist = await Wishlist.findAll({
+      where: {
+        eventId: req.params.eventId,
+        attendeeId: attendee.userId,
+      },
+    });
 
+    if (wishlist.length > 0) {
+      const formattedWishlist = {
+        id: wishlist[0].id,
+      };
+      attendee.User.dataValues.Wishlist = formattedWishlist;
+    }
+  }
+
+  const formattedUser = user.toJSON();
   const formattedEvent = event.toJSON();
 
   const newTimeUpdatedAt = new Date(formattedEvent.updatedAt)
@@ -136,11 +149,13 @@ router.get('/:eventId', requireAuth, async (req, res) => {
   delete formattedEvent.updatedAt;
   delete formattedEvent.eventDate;
 
-  (formattedEvent.Attendees = attendees.map((attendee) => ({
+  formattedEvent.Attendees = attendees.map((attendee) => ({
     id: attendee.User.id,
     username: attendee.User.username,
-  }))),
-    (formattedEvent.Organizer = formattedUser);
+    Wishlist: attendee.User.dataValues.Wishlist || null,
+  }));
+
+  formattedEvent.Organizer = formattedUser;
   formattedEvent.eventDate = `${newDateEventDate}`;
   formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
   formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
@@ -206,9 +221,9 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
   delete formattedEvent.updatedAt;
   delete formattedEvent.eventDate;
 
+  formattedEvent.eventDate = `${newDateEventDate}`;
   formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
   formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
-  formattedEvent.eventDate = `${newDateEventDate}`;
 
   res.status(201).json(formattedEvent);
 });
@@ -373,7 +388,6 @@ router.get('/:eventId/attendees', requireAuth, async (req, res) => {
 
 // Request to Attend an Event based on the Event's id
 router.post('/:eventId/attendance', requireAuth, async (req, res) => {
-  // const currentUser = req.user.toJSON();
   const userId = req.user.id;
   const eventId = req.params.eventId;
 
@@ -495,6 +509,16 @@ router.put(
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
 
+      try {
+        await Wishlist.create({
+          attendeeId: id,
+          eventId,
+        });
+      } catch (error) {
+        console.error('Error creating wishlist:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+
       return res.json({ id, eventId, userId, status });
     } else if (
       attendance.status === 'waitlist' &&
@@ -509,6 +533,16 @@ router.put(
       const { id, eventId, userId, status } = attendanceUpdated.toJSON();
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
+
+      try {
+        await Wishlist.create({
+          attendeeId: id,
+          eventId,
+        });
+      } catch (error) {
+        console.error('Error creating wishlist:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
 
       return res.json({ id, eventId, userId, status });
     }

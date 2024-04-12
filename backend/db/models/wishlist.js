@@ -1,24 +1,20 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Attendee extends Model {
+  class Wishlist extends Model {
     static associate(models) {
-      Attendee.belongsTo(models.User, {
-        foreignKey: 'userId',
-      });
-
-      Attendee.belongsTo(models.Event, {
-        foreignKey: 'eventId',
-      });
-
-      Attendee.hasOne(models.Wishlist, {
+      Wishlist.belongsTo(models.Attendee, {
         foreignKey: 'attendeeId',
+      });
+
+      Wishlist.belongsTo(models.Event, {
+        foreignKey: 'eventId',
       });
     }
   }
-  Attendee.init(
+  Wishlist.init(
     {
-      userId: {
+      attendeeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -26,15 +22,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      status: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
     },
     {
       sequelize,
-      modelName: 'Attendee',
+      modelName: 'Wishlist',
     }
   );
-  return Attendee;
+  return Wishlist;
 };
