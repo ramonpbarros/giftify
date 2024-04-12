@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth, isAuthorized } = require('../../utils/auth');
-const { Attendee, Wishlist, Event } = require('../../db/models');
+const { Attendee, Wishlist, Product } = require('../../db/models');
 
 const router = express.Router();
 
@@ -143,6 +143,144 @@ router.delete('/:wishlistId', isAuthorized, async (req, res) => {
   } catch (error) {
     console.error('Error while deleting wishlist:', error);
     return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Get all Products in a Wishlist
+router.get('/:wishlistId/products', requireAuth, async (req, res) => {
+  try {
+    const currentUser = req.user.toJSON();
+    const wishlistId = req.params.wishlistId;
+
+    const wishlist = await Wishlist.findOne({
+      where: {
+        id: wishlistId,
+      },
+    });
+
+    if (!wishlist) {
+      res.status(404);
+      res.send({ message: "Wishlist couldn't be found" });
+    }
+
+    const attendee = await Attendee.findByPk(wishlist.attendeeId);
+
+    if (attendee.userId !== currentUser.id) {
+      const err = new Error();
+      err.message = 'Forbidden';
+      err.status = 403;
+      return next(err);
+    }
+
+    const products = await Product.findAll({
+      where: {
+        wishlistId,
+      },
+    });
+
+    if (!products) {
+      res.status(404);
+      res.send({ message: "Product couldn't be found" });
+    }
+
+    const formattedProducts = products.map((product) => {
+      const formattedProduct = product.toJSON();
+
+      const newTimeUpdatedAt = new Date(formattedProduct.updatedAt)
+        .toISOString()
+        .split('')
+        .slice(11, 19)
+        .join('');
+
+      const newDateUpdatedAt = new Date(formattedProduct.updatedAt)
+        .toISOString()
+        .split('T')[0];
+
+      const newTimeCreatedAt = new Date(formattedProduct.createdAt)
+        .toISOString()
+        .split('')
+        .slice(11, 19)
+        .join('');
+
+      const newDateCreatedAt = new Date(formattedProduct.createdAt)
+        .toISOString()
+        .split('T')[0];
+
+      delete formattedProduct.createdAt;
+      delete formattedProduct.updatedAt;
+
+      formattedProduct.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+      formattedProduct.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+
+      return formattedProduct;
+    });
+
+    res.json({ Products: formattedProducts });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Get a Product by ID
+router.get('/products/:productId', requireAuth, async (req, res) => {
+  try {
+    const currentUser = req.user.toJSON();
+    const productId = req.params.productId;
+
+    const product = await Product.findByPk(productId);
+
+    if (!product) {
+      res.status(404);
+      res.send({ message: "Product couldn't be found" });
+    }
+
+    const wishlist = await Wishlist.findOne({
+      where: {
+        id: product.wishlistId,
+      },
+    });
+
+    const attendee = await Attendee.findByPk(wishlist.attendeeId);
+
+    if (attendee.userId !== currentUser.id) {
+      const err = new Error();
+      err.message = 'Forbidden';
+      err.status = 403;
+      return next(err);
+    }
+
+    const formattedProduct = product.toJSON();
+    const newTimeUpdatedAt = new Date(formattedProduct.updatedAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
+
+    const newDateUpdatedAt = new Date(formattedProduct.updatedAt)
+      .toISOString()
+      .split('T')[0];
+
+    const newTimeCreatedAt = new Date(formattedProduct.createdAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
+
+    const newDateCreatedAt = new Date(formattedProduct.createdAt)
+      .toISOString()
+      .split('T')[0];
+
+    delete formattedProduct.createdAt;
+    delete formattedProduct.updatedAt;
+
+    formattedProduct.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+    formattedProduct.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+
+    res.json(formattedProduct);
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

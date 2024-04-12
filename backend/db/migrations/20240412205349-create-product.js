@@ -35,7 +35,7 @@ module.exports = {
           allowNull: true,
         },
         productPrice: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.DECIMAL(10, 2),
           allowNull: false,
         },
         productLink: {
