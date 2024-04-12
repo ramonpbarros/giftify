@@ -1,5 +1,5 @@
 const express = require('express');
-const { Event, User, Attendee } = require('../../db/models');
+const { Event, User, Attendee, Wishlist } = require('../../db/models');
 const { requireAuth, isAuthorized, restoreUser } = require('../../utils/auth');
 const {
   validateCreateEvent,
@@ -494,6 +494,11 @@ router.put(
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
 
+      await Wishlist.create({
+        attendeeId: id,
+        eventId,
+      });
+
       return res.json({ id, eventId, userId, status });
     } else if (
       attendance.status === 'waitlist' &&
@@ -508,6 +513,11 @@ router.put(
       const { id, eventId, userId, status } = attendanceUpdated.toJSON();
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
+
+      await Wishlist.create({
+        attendeeId: id,
+        eventId,
+      });
 
       return res.json({ id, eventId, userId, status });
     }

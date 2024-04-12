@@ -80,6 +80,48 @@ router.get('/:wishlistId', requireAuth, async (req, res) => {
 });
 
 // Create a Wishlist
-router.post('/', requireAuth, async (req, res) => {});
+router.post('/', requireAuth, async (req, res) => {
+  try {
+    const { attendeeId, eventId } = req.body;
+
+    const newWishlist = await Wishlist.create({
+      attendeeId,
+      eventId,
+    });
+
+    let formattedWishlist = newWishlist.toJSON();
+
+    const newTimeUpdatedAt = new Date(formattedWishlist.updatedAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
+
+    const newDateUpdatedAt = new Date(formattedWishlist.updatedAt)
+      .toISOString()
+      .split('T')[0];
+
+    const newTimeCreatedAt = new Date(formattedWishlist.createdAt)
+      .toISOString()
+      .split('')
+      .slice(11, 19)
+      .join('');
+
+    const newDateCreatedAt = new Date(formattedWishlist.createdAt)
+      .toISOString()
+      .split('T')[0];
+
+    delete formattedWishlist.createdAt;
+    delete formattedWishlist.updatedAt;
+
+    formattedWishlist.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
+    formattedWishlist.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+
+    res.status(201).json(formattedWishlist);
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 module.exports = router;
