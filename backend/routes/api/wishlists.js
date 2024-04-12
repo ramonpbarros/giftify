@@ -119,8 +119,30 @@ router.post('/', requireAuth, async (req, res) => {
 
     res.status(201).json(formattedWishlist);
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error('Error fetching wishlist:', error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Delete a Wishlist
+router.delete('/:wishlistId', isAuthorized, async (req, res) => {
+  try {
+    const wishlistId = req.params.wishlistId;
+
+    const wishlist = await Wishlist.findOne({ where: { id: wishlistId } });
+
+    if (!wishlist) {
+      res.status(404).json({ message: "Wishlist couldn't be found" });
+    }
+
+    await wishlist.destroy();
+
+    res.json({
+      message: 'Successfully deleted',
+    });
+  } catch (error) {
+    console.error('Error while deleting wishlist:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
 

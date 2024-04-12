@@ -494,10 +494,15 @@ router.put(
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
 
-      await Wishlist.create({
-        attendeeId: id,
-        eventId,
-      });
+      try {
+        await Wishlist.create({
+          attendeeId: id,
+          eventId,
+        });
+      } catch (error) {
+        console.error('Error creating wishlist:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
 
       return res.json({ id, eventId, userId, status });
     } else if (
@@ -514,10 +519,15 @@ router.put(
       delete attendanceUpdated.updatedAt;
       delete attendanceUpdated.createdAt;
 
-      await Wishlist.create({
-        attendeeId: id,
-        eventId,
-      });
+      try {
+        await Wishlist.create({
+          attendeeId: id,
+          eventId,
+        });
+      } catch (error) {
+        console.error('Error creating wishlist:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
 
       return res.json({ id, eventId, userId, status });
     }
