@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Wishlist.belongsTo(models.Attendee, {
         foreignKey: 'attendeeId',
+        onDelete: 'CASCADE',
       });
 
       Wishlist.belongsTo(models.Event, {
