@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       Wishlist.belongsTo(models.Event, {
         foreignKey: 'eventId',
       });
+
+      Wishlist.hasMany(models.Product, {
+        foreignKey: 'wishlistId',
+      });
     }
   }
   Wishlist.init(
