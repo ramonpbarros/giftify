@@ -1,5 +1,7 @@
 'use strict';
+
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Attendee extends Model {
     static associate(models) {
@@ -11,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'eventId',
       });
 
-      Attendee.hasOne(models.Wishlist, {
+      Attendee.hasMany(models.Wishlist, {
         foreignKey: 'attendeeId',
       });
     }
