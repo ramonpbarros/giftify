@@ -28,7 +28,7 @@ module.exports = {
         },
         productDescription: {
           type: Sequelize.STRING,
-          allowNull: true,
+          allowNull: false,
         },
         productImgUrl: {
           type: Sequelize.STRING,
@@ -36,7 +36,7 @@ module.exports = {
         },
         productPrice: {
           type: Sequelize.DECIMAL(10, 2),
-          allowNull: false,
+          allowNull: true,
         },
         productLink: {
           type: Sequelize.STRING,

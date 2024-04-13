@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       productDescription: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       productImgUrl: {
         type: DataTypes.STRING,
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       productPrice: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
+        allowNull: true,
       },
       productLink: {
         type: DataTypes.STRING,

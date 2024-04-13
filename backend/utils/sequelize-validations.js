@@ -97,7 +97,22 @@ const validateEditEvent = [
   handleValidationErrors,
 ];
 
+const validateCreateProduct = [
+  check('productName')
+    .exists()
+    .notEmpty()
+    .withMessage('Product name is required')
+    .isLength({ max: 50 })
+    .withMessage('Product name must be less than 50 characters'),
+  check('productDescription')
+    .exists()
+    .notEmpty()
+    .withMessage('Product description is required'),
+  handleValidationErrors,
+];
+
 module.exports = {
   validateCreateEvent,
   validateEditEvent,
+  validateCreateProduct,
 };
