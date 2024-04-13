@@ -2,7 +2,6 @@ const express = require('express');
 const { requireAuth, isAuthorized } = require('../../utils/auth');
 const { Attendee, Wishlist, Product } = require('../../db/models');
 const { validateCreateProduct } = require('../../utils/sequelize-validations');
-const e = require('express');
 
 const router = express.Router();
 
