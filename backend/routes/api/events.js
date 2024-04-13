@@ -65,9 +65,9 @@ router.get('/', requireAuth, async (req, res) => {
       delete formattedEvent.updatedAt;
       delete formattedEvent.eventDate;
 
+      formattedEvent.eventDate = `${newDateEventDate}`;
       formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
       formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
-      formattedEvent.eventDate = `${newDateEventDate}`;
 
       return formattedEvent;
     });
