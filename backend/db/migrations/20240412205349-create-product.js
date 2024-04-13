@@ -39,7 +39,7 @@ module.exports = {
           allowNull: true,
         },
         productLink: {
-          type: Sequelize.STRING,
+          type: Sequelize.TEXT,
           allowNull: true,
         },
         createdAt: {
