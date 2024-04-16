@@ -631,7 +631,10 @@ router.put(
       return res.json({ id, eventId, userId, status });
     }
 
-    // waitlist implementation coming soon
+    // Waitlist implementation coming soon!
+    // The idea is that for public events with maxed out attendance, users can be put on a waitlist status.
+    // If someone drops out of the event, they can be added from the waitlist.
+
     // if (
     //   attendance.status === 'waitlist' &&
     //   event.private &&
@@ -668,14 +671,14 @@ router.delete('/:eventId/attendance/:userId', requireAuth, async (req, res) => {
     const userId = req.params.userId;
     const currentUser = req.user.toJSON();
 
-    if (userId != currentUser.id) {
+    if (userId == currentUser.id) {
+      const event = await Event.findOne({ where: { id: eventId, userId } });
+
+      if (!event) {
+        return res.status(404).json({ message: "Event couldn't be found" });
+      }
+    } else {
       return res.status(403).json({ message: 'Forbidden' });
-    }
-
-    const event = await Event.findOne({ where: { id: eventId, userId } });
-
-    if (!event) {
-      return res.status(404).json({ message: "Event couldn't be found" });
     }
 
     const attendance = await Attendee.findOne({
@@ -691,7 +694,7 @@ router.delete('/:eventId/attendance/:userId', requireAuth, async (req, res) => {
 
     await attendance.destroy();
 
-    res.json({
+    return res.json({
       message: 'Successfully deleted',
     });
   } catch (error) {

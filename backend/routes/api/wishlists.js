@@ -16,23 +16,32 @@ router.get('/', requireAuth, async (req, res) => {
 
     let formattedWishlists = [];
 
-    wishlists.forEach((wishlist) => {
-      if (wishlist.Attendee && wishlist.Attendee.userId === currentUser.id) {
-        formattedWishlists.push({
-          id: wishlist.id,
-          attendeeId: wishlist.Attendee.id,
-          eventId: wishlist.Attendee.eventId,
-          createdAt: new Date(wishlist.createdAt)
-            .toISOString()
-            .replace(/T/, ' ')
-            .replace(/\..+/, ''),
-          updatedAt: new Date(wishlist.updatedAt)
-            .toISOString()
-            .replace(/T/, ' ')
-            .replace(/\..+/, ''),
+    await Promise.all(
+      wishlists.map(async (wishlist) => {
+        const products = await Product.findAll({
+          where: {
+            wishlistId: wishlist.id,
+          },
         });
-      }
-    });
+
+        if (wishlist.Attendee && wishlist.Attendee.userId === currentUser.id) {
+          formattedWishlists.push({
+            id: wishlist.id,
+            attendeeId: wishlist.Attendee.id,
+            eventId: wishlist.Attendee.eventId,
+            Products: products,
+            createdAt: new Date(wishlist.createdAt)
+              .toISOString()
+              .replace(/T/, ' ')
+              .replace(/\..+/, ''),
+            updatedAt: new Date(wishlist.updatedAt)
+              .toISOString()
+              .replace(/T/, ' ')
+              .replace(/\..+/, ''),
+          });
+        }
+      })
+    );
 
     res.json({ Wishlists: formattedWishlists });
   } catch (error) {
