@@ -51,15 +51,11 @@ const validateEditEvent = [
   check('eventName')
     .optional()
     .exists()
-    .notEmpty()
-    .withMessage('Event name is required')
     .isLength({ max: 50 })
     .withMessage('Event name must be less than 50 characters'),
   check('eventDescription')
     .optional()
-    .exists()
-    .notEmpty()
-    .withMessage('Event description is required'),
+    .exists(),
   check('eventDate')
     .optional()
     .exists()
@@ -72,9 +68,7 @@ const validateEditEvent = [
     }),
   check('private')
     .optional()
-    .exists()
-    .notEmpty()
-    .withMessage('Privacy status is required'),
+    .exists(),
   check('maxGiftCost')
     .optional()
     .exists()
