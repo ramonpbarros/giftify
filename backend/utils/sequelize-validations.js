@@ -51,15 +51,11 @@ const validateEditEvent = [
   check('eventName')
     .optional()
     .exists()
-    .notEmpty()
-    .withMessage('Event name is required')
     .isLength({ max: 50 })
     .withMessage('Event name must be less than 50 characters'),
   check('eventDescription')
     .optional()
-    .exists()
-    .notEmpty()
-    .withMessage('Event description is required'),
+    .exists(),
   check('eventDate')
     .optional()
     .exists()
@@ -72,9 +68,7 @@ const validateEditEvent = [
     }),
   check('private')
     .optional()
-    .exists()
-    .notEmpty()
-    .withMessage('Privacy status is required'),
+    .exists(),
   check('maxGiftCost')
     .optional()
     .exists()
@@ -98,6 +92,12 @@ const validateEditEvent = [
 ];
 
 const validateCreateProduct = [
+  check('wishlistId')
+  .exists()
+  .notEmpty()
+  .withMessage('Wishlist id is required')
+  .isInt({ min: 1 })
+  .withMessage('Wishlist id must be an integer greater than 0'),
   check('productName')
     .exists()
     .notEmpty()
@@ -111,8 +111,25 @@ const validateCreateProduct = [
   handleValidationErrors,
 ];
 
+const validateCreateWishlist = [
+  check('attendeeId')
+    .exists()
+    .notEmpty()
+    .withMessage('Attendee id is required')
+    .isInt({ min: 1 })
+    .withMessage('Attendee id must be an integer greater than 0'),
+  check('eventId')
+    .exists()
+    .notEmpty()
+    .withMessage('Event id is required')
+    .isInt({ min: 1 })
+    .withMessage('Event id must be an integer greater than 0'),
+  handleValidationErrors,
+];
+
 module.exports = {
   validateCreateEvent,
   validateEditEvent,
   validateCreateProduct,
+  validateCreateWishlist,
 };
