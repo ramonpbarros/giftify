@@ -347,6 +347,7 @@ router.post(
     } = req.body;
 
     const newProduct = await Product.create({
+      wishlistId: parseInt(wishlistId),
       productName,
       productDescription,
       productImageUrl,
@@ -392,6 +393,7 @@ router.put(
   requireAuth,
   validateCreateProduct,
   async (req, res) => {
+    const currentUser = req.user.toJSON();
     const productId = req.params.productId;
     const wishlistId = req.params.wishlistId;
 
@@ -427,6 +429,7 @@ router.delete(
   '/:wishlistId/products/:productId',
   requireAuth,
   async (req, res) => {
+    const currentUser = req.user.toJSON();
     const wishlistId = req.params.wishlistId;
     const productId = req.params.productId;
 
