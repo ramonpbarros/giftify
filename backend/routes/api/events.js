@@ -571,7 +571,7 @@ router.post('/:eventId/attendance', requireAuth, async (req, res) => {
     const newAttendance = await Attendee.create({
       userId,
       eventId,
-      status: null,
+      status: 'pending',
     });
 
     return res.json({ userId: userId, status: newAttendance.status });
@@ -584,17 +584,22 @@ router.put(
   requireAuth,
   isAuthorized,
   async (req, res) => {
+    const currentUser = req.user.toJSON();
     const eventId = req.params.eventId;
     const { userId, status } = req.body;
 
     const event = await Event.findOne({ where: { id: eventId } });
 
     if (!event) {
-      res.status(404).json({ message: "Event couldn't be found" });
+      return res.status(404).json({ message: "Event couldn't be found" });
+    }
+
+    if (currentUser.id !== event.userId) {
+      return res.status(403).json({ message: 'Forbidden' });
     }
 
     const attendance = await Attendee.findOne({
-      where: { userId: userId, eventId: eventId },
+      where: { userId, eventId },
     });
 
     if (!attendance) {
@@ -603,34 +608,34 @@ router.put(
       });
     }
 
-    if (attendance.status === 'attending') {
-      return res
-        .status(400)
-        .json({ message: 'User is already an attendee of the event' });
+    if (attendance.status === status) {
+      return res.status(400).json({
+        message: 'User is already in the requested attendance status',
+      });
     }
 
     if (attendance.status === 'pending') {
-      const attendanceUpdated = await attendance.update({
+      const updatedAttendance = await attendance.update({
         status: 'attending',
       });
 
-      const { id, eventId, userId, status } = attendanceUpdated.toJSON();
-      delete attendanceUpdated.updatedAt;
-      delete attendanceUpdated.createdAt;
+      formattedAttendance = updatedAttendance.toJSON();
+
+      delete formattedAttendance.createdAt;
+      delete formattedAttendance.updatedAt;
 
       try {
         await Wishlist.create({
-          attendeeId: id,
+          attendeeId: updatedAttendance.id,
           eventId,
         });
       } catch (error) {
         console.error('Error creating wishlist:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
       }
 
-      return res.json({ id, eventId, userId, status });
+      return res.json(formattedAttendance);
     }
-
     // Waitlist implementation coming soon!
     // The idea is that for public events with maxed out attendance, users can be put on a waitlist status.
     // If someone drops out of the event, they can be added from the waitlist.
@@ -656,7 +661,7 @@ router.put(
     //     });
     //   } catch (error) {
     //     console.error('Error creating wishlist:', error);
-    //     res.status(500).json({ message: 'Internal server error' });
+    //     return res.status(500).json({ message: 'Internal server error' });
     //   }
 
     //   return res.json({ id, eventId, userId, status });

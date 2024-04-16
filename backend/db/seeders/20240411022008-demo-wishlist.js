@@ -12,10 +12,6 @@ module.exports = {
     try {
       await Wishlist.bulkCreate([
         {
-          attendeeId: 1,
-          eventId: 1,
-        },
-        {
           attendeeId: 2,
           eventId: 1,
         },

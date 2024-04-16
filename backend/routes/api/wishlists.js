@@ -1,7 +1,10 @@
 const express = require('express');
 const { requireAuth, isAuthorized } = require('../../utils/auth');
 const { Attendee, Wishlist, Product } = require('../../db/models');
-const { validateCreateProduct } = require('../../utils/sequelize-validations');
+const {
+  validateCreateProduct,
+  validateCreateWishlist,
+} = require('../../utils/sequelize-validations');
 
 const router = express.Router();
 
@@ -63,26 +66,42 @@ router.get('/:wishlistId', requireAuth, async (req, res) => {
       res.send({ message: "Wishlist couldn't be found" });
     }
 
-    let formattedWishlist = {};
+    const products = await Product.findAll({
+      where: {
+        wishlistId: wishlist.id,
+      },
+    });
+
+    let formattedProducts = [];
 
     if (wishlist.Attendee && wishlist.Attendee.userId === currentUser.id) {
-      formattedWishlist.id = wishlist.id;
-      formattedWishlist.attendeeId = wishlist.Attendee.id;
-      formattedWishlist.eventId = wishlist.Attendee.eventId;
-      formattedWishlist.createdAt = new Date(wishlist.createdAt)
-        .toISOString()
-        .replace(/T/, ' ')
-        .replace(/\..+/, '');
-      formattedWishlist.updatedAt = new Date(wishlist.updatedAt)
-        .toISOString()
-        .replace(/T/, ' ')
-        .replace(/\..+/, '');
+      formattedProducts = products.map((product) => {
+        const { createdAt, updatedAt, ...formattedProduct } = product.toJSON();
+        return formattedProduct;
+      });
+
+      const formattedWishlist = {
+        id: wishlist.id,
+        attendeeId: wishlist.Attendee.id,
+        eventId: wishlist.Attendee.eventId,
+        Products: formattedProducts,
+        createdAt: new Date(wishlist.createdAt)
+          .toISOString()
+          .replace(/T/, ' ')
+          .replace(/\..+/, ''),
+        updatedAt: new Date(wishlist.updatedAt)
+          .toISOString()
+          .replace(/T/, ' ')
+          .replace(/\..+/, ''),
+      };
+
+      return res.json(formattedWishlist);
     } else {
       res.status(403);
       res.send({ message: 'Forbidden' });
     }
 
-    res.json(formattedWishlist);
+    // res.json(formattedWishlist);
   } catch (error) {
     console.error('Error fetching events:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -90,7 +109,7 @@ router.get('/:wishlistId', requireAuth, async (req, res) => {
 });
 
 // Create a Wishlist
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, validateCreateWishlist, async (req, res) => {
   try {
     const { attendeeId, eventId } = req.body;
 
@@ -127,7 +146,7 @@ router.post('/', requireAuth, async (req, res) => {
     formattedWishlist.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
     formattedWishlist.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
 
-    res.status(201).json(formattedWishlist);
+    return res.status(201).json(formattedWishlist);
   } catch (error) {
     console.error('Error fetching wishlist:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -135,25 +154,26 @@ router.post('/', requireAuth, async (req, res) => {
 });
 
 // Delete a Wishlist
-router.delete('/:wishlistId', isAuthorized, async (req, res) => {
-  try {
-    const wishlistId = req.params.wishlistId;
+router.delete('/:wishlistId', requireAuth, async (req, res) => {
+  const wishlistId = req.params.wishlistId;
 
-    const wishlist = await Wishlist.findOne({ where: { id: wishlistId } });
+  const wishlist = await Wishlist.findOne({ where: { id: wishlistId } });
 
-    if (!wishlist) {
-      res.status(404).json({ message: "Wishlist couldn't be found" });
-    }
-
-    await wishlist.destroy();
-
-    res.json({
-      message: 'Successfully deleted',
-    });
-  } catch (error) {
-    console.error('Error while deleting wishlist:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+  if (!wishlist) {
+    return res.status(404).json({ message: "Wishlist couldn't be found" });
   }
+
+  const attendance = await Attendee.findByPk(wishlist.attendeeId);
+
+  if (!attendance || attendance.eventId !== wishlist.eventId) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+
+  await wishlist.destroy();
+
+  res.json({
+    message: 'Successfully deleted',
+  });
 });
 
 // Get all Products in a Wishlist
