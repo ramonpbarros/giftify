@@ -1,3 +1,3 @@
-import LoginFormPage from './LoginFormPage.jsx';
+import LoginFormModal from './LoginFormPage.jsx';
 
-export default LoginFormPage;
+export default LoginFormModal;
