@@ -12,8 +12,4 @@ router.use('/users', usersRouter);
 router.use('/events', eventsRouter);
 router.use('/wishlists', wishlistsRouter);
 
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
-
 module.exports = router;
