@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaRegUserCircle } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
+import { MdLogout } from 'react-icons/md';
 import * as sessionActions from '../../store/session';
 // import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
@@ -48,14 +49,13 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className="btn-profile" onClick={toggleMenu}>
-        <FaRegUserCircle />
+        <FaRegUser />
       </button>
       <div className={menuClassName} ref={menuRef}>
         {user ? (
           <div className="list">
             <div>
               <p>Hello, {user.firstName || user.username}</p>
-              <p className="email">{user.email}</p>
             </div>
             <Link
               className="nav-btn2"
@@ -68,10 +68,14 @@ function ProfileButton({ user }) {
             >
               Manage Events
             </Link>
+
+            <Link>
+              Profile
+            </Link>
             <div className="custom-hr"></div>
-            <hr />
-            <button className="nav-btn" onClick={logout}>
-              Log Out
+            <button className="btn btn-content" onClick={logout}>
+              <MdLogout />
+              &nbsp;Log Out
             </button>
           </div>
         ) : (

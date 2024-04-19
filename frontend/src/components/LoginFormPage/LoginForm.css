@@ -139,7 +139,7 @@ input:-webkit-autofill:active {
   margin-top: 2em;
 }
 
-.btn {
+/* .btn {
   background: none;
   cursor: pointer;
   padding: 10px 20px;
@@ -163,7 +163,7 @@ input:-webkit-autofill:active {
 .btn-content:hover {
   border-color: white;
   background-position: 100%;
-}
+} */
 
 .error {
   color: rgb(214, 13, 13);
