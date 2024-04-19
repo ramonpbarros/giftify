@@ -1,18 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
+import { MdLogout } from 'react-icons/md';
 import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
+// import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { Link, useNavigate } from 'react-router-dom';
+import './Navigation.css';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const menuRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -20,7 +25,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!menuRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -36,42 +41,58 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    navigate('/signup');
   };
 
-  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
+  const menuClassName = 'profile-dropdown' + (showMenu ? ' hidden' : '');
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
+      <button className="btn-profile" onClick={toggleMenu}>
+        <FaRegUser />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={menuClassName} ref={menuRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </>
+          <div className="list">
+            <div>
+              <p>Hello, {user.firstName || user.username}</p>
+            </div>
+            <Link
+              className="nav-btn2"
+              to="events/current"
+              onClick={(e) => {
+                e.preventDefault();
+                closeMenu();
+                navigate('events/current');
+              }}
+            >
+              Manage Events
+            </Link>
+
+            <Link>
+              Profile
+            </Link>
+            <div className="custom-hr"></div>
+            <button className="btn btn-content" onClick={logout}>
+              <MdLogout />
+              &nbsp;Log Out
+            </button>
+          </div>
         ) : (
           <>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
+            <OpenModalButton
+              buttonText="Log In"
+              onButtonClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              onItemClick={closeMenu}
+            <OpenModalButton
+              buttonText="Sign Up"
+              onButtonClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }

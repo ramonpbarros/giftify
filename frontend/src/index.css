@@ -1,1 +1,97 @@
-/* TODO: Add sitewide styles */
+* {
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+
+:root {
+  /* Primary Colors */
+  --primary-color: #562b99;
+  --primary-lighter-color: #bf94ff;
+  --primary-brighter-color: #743ae7;
+  --primary-darker-color: #3e206d;
+
+  /* Secondary Colors */
+  --secondary-color: #2a2438;
+
+  /* Neutral Colors */
+  --neutral-primary-color: #352f44;
+  --neutral-secondary-color: #5c5470;
+  --neutral-tertiary-color: #dbd8e3;
+
+  /* Font Sizes */
+  --font-size-small: 14px;
+  --font-size-medium: 18px;
+  --font-size-large: 24px;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 900;
+
+  /* Font Family */
+  --font-family-primary: 'Roboto', sans-serif;
+  --font-family-secondary: 'Roboto Flex', sans-serif;
+  --font-family-tertiary: 'Lobster', sans-serif;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-brighter-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-lighter-color);
+}
+
+/* Button */
+.btn {
+  background: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 1em auto;
+  border-radius: 5px;
+  color: #212121;
+  letter-spacing: 1px;
+  /* text-transform: uppercase; */
+  transition: 0.4s ease;
+  width: 100%;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-content {
+  color: var(--neutral-tertiary-color);
+  border: 1px solid var(--neutral-tertiary-color);
+  background-image: linear-gradient(to right, transparent 50%, #7e3cff 50%);
+  background-size: 200%;
+  background-position: 0%;
+}
+
+.btn-content:hover {
+  border-color: white;
+  color: white;
+  background-position: 100%;
+}
