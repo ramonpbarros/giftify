@@ -41,11 +41,17 @@ function LoginFormPage() {
         <div className="overlay">
           <div className="container">
             <div className="login">
-              <h1>Giftify</h1>
-              <h3>The ultimate gifting platform!</h3>
-              {/* {errors.length > 0 &&
-              errors.map((message) => <p key={message}>{message}</p>)} */}
-              <form onSubmit={handleSubmit}>
+              <h1 className="animate__animated animate__jackInTheBox">
+                Giftify
+              </h1>
+              <h3 className="animate__animated animate__fadeIn">
+                The Ultimate Gift Exchange Platform
+              </h3>
+
+              <form
+                onSubmit={handleSubmit}
+                className="animate__animated animate__fadeIn"
+              >
                 <label>
                   Username or Email
                   <input
@@ -54,7 +60,6 @@ function LoginFormPage() {
                     onChange={(e) => setCredential(e.target.value)}
                   />
                 </label>
-                {/* {errors.credential && <p>{errors.credential}</p>} */}
                 <label>
                   Password
                   <input
@@ -63,7 +68,6 @@ function LoginFormPage() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </label>
-                {/* {errors.password && <p>{errors.password}</p>} */}
                 <div>
                   {errors.credential && (
                     <small className="error">{errors.credential}</small>

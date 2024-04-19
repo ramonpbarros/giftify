@@ -7,6 +7,7 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import { Modal, ModalProvider } from './context/Modal';
+import 'animate.css'
 
 const store = configureStore();
 

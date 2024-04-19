@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    navigate('/');
+    navigate('/signup');
   };
 
   const menuClassName = 'profile-dropdown' + (showMenu ? ' hidden' : '');
