@@ -13,7 +13,7 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const menuRef = useRef();
 
   const toggleMenu = (e) => {
     e.stopPropagation();
@@ -24,7 +24,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!menuRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -43,68 +43,52 @@ function ProfileButton({ user }) {
     navigate('/');
   };
 
-  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
+  const menuClassName = 'profile-dropdown' + (showMenu ? ' hidden' : '');
 
   return (
     <>
-      <button className="custom-button" onClick={toggleMenu}>
+      <button className="btn-profile" onClick={toggleMenu}>
         <FaRegUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={menuClassName} ref={menuRef}>
         {user ? (
-          <>
-            <div className="list">
-              <div>
-                <p>Hello, {user.username}</p>
-                <p className="email">{user.email}</p>
-              </div>
-              <Link
-                className="nav-btn2"
-                to="events/current"
-                onClick={(e) => {
-                  e.preventDefault();
-                  closeMenu();
-                  navigate('events/current');
-                }}
-              >
-                Manage Spots
-              </Link>
-              <div className="custom-hr"></div>
-              <hr />
-              <button className="nav-btn" onClick={logout}>
-                Log Out
-              </button>
+          <div className="list">
+            <div>
+              <p>Hello, {user.firstName || user.username}</p>
+              <p className="email">{user.email}</p>
             </div>
-          </>
+            <Link
+              className="nav-btn2"
+              to="events/current"
+              onClick={(e) => {
+                e.preventDefault();
+                closeMenu();
+                navigate('events/current');
+              }}
+            >
+              Manage Events
+            </Link>
+            <div className="custom-hr"></div>
+            <hr />
+            <button className="nav-btn" onClick={logout}>
+              Log Out
+            </button>
+          </div>
         ) : (
-          // <>
-          //   <li>{user.username}</li>
-          //   <li>
-          //     {user.firstName} {user.lastName}
-          //   </li>
-          //   <li>{user.email}</li>
-          //   <li>
-          //     <button onClick={logout}>Log Out</button>
-          //   </li>
-          // </>
           <>
-            <li>
-              <OpenModalButton
-                buttonText="Log In"
-                onButtonClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-            <li>
-              <OpenModalButton
-                buttonText="Sign Up"
-                onButtonClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </li>
+            <OpenModalButton
+              buttonText="Log In"
+              onButtonClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalButton
+              buttonText="Sign Up"
+              onButtonClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }

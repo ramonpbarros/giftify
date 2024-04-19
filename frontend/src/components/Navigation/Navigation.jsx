@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
         {isLoaded && (
-          <li className="navbar-item">
+          <li className="profile">
             <ProfileButton user={sessionUser} />
           </li>
         )}
@@ -33,20 +33,23 @@ function Navigation({ isLoaded }) {
           <NavLink
             to="/"
             className="navbar-link"
-            activeClassName="navbar-link-active"
+            style={({ isActive, isPending, isTransitioning }) => ({
+              fontWeight: isPending ? 'bold' : '',
+              color: isActive ? '#743ae7' : 'white',
+              viewTransitionName: isTransitioning ? 'slide' : '',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+              ':hover': {
+                color: 'lightgray',
+              },
+            })}
           >
             Giftify
           </NavLink>
         </li>
-        {isLoaded && (
-          // <li className="navbar-item">
-          //   <ProfileButton user={sessionUser} />
-          //   <button></button>
-          // </li>
-          <div className="btn-login" onClick={() => navigate('/login')}>
-            Login
-          </div>
-        )}
+        <div className="btn-login" onClick={() => navigate('/login')}>
+          Login
+        </div>
       </ul>
     </nav>
   );

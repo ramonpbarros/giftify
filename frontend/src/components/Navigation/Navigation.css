@@ -5,6 +5,8 @@
   justify-content: space-between;
   align-items: center;
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .navbar-list {
@@ -17,59 +19,38 @@
 
 .navbar-link {
   color: var(--neutral-tertiary-color);
+  font-size: var(--font-size-large);
   text-decoration: none;
   padding: 5px 10px;
   font-family: var(--font-family-tertiary);
 }
 
-.navbar-link:hover,
-.navbar-link-active {
+.navbar-link:hover {
   color: var(--primary-brighter-color);
 }
 
 .profile-dropdown {
-  margin-top: 5px;
+  margin-top: 20px;
   display: block;
   position: absolute;
-  transform: translateX(-65%);
-  background-color: white;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-85%);
+  background-color: var(--neutral-primary-color);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
   padding: 10px;
   z-index: 1;
   border-radius: 8px;
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--neutral-primary-color);
   width: 13%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .profile-dropdown.hidden {
-  display: none;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* .btn-login {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  color: var(--neutral-tertiary-color);
-  border: solid #ebebeb;
-  padding: 10px 15px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-.btn-login i {
-  font-size: 18px;
-}
-
-.btn-login i:first-child {
-  margin-right: 10px;
-}
-
-.btn-login:hover {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-  color: var(--neutral-tertiary-color);
-  background-color: white;
-} */
 .btn-login {
   background: none;
   cursor: pointer;
@@ -79,15 +60,34 @@
   font-family: var(--font-family-primary);
   transition: 0.4s ease;
   margin-left: auto;
- }
+  align-content: center;
+}
 
-
- .btn-login:hover {
+.btn-login:hover {
   color: white;
+}
+
+.profile {
+  margin-left: auto;
+  align-content: center;
+}
+
+.btn-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
  }
 
-.navbar-item{
-  margin-left: auto;
+.navbar-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-btn {
@@ -145,6 +145,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
+  font-family: var(--font-family-primary);
 }
 
 .list li {
