@@ -1,41 +1,29 @@
 import { useState } from 'react';
 import * as sessionActions from '../../store/session';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginFormPage() {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = async (e) => {
+  if (sessionUser) return <Navigate to="/" replace={true} />;
+  console.log(sessionUser)
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-        }
+        if (data?.errors) setErrors(data.errors);
       }
     );
-
-    // const serverResponse = await dispatch(
-    //   sessionActions.login({
-    //     credential: credential,
-    //     password,
-    //   })
-    // );
-
-    // if (serverResponse) {
-    //   setErrors(serverResponse);
-    // } else {
-    //   navigate('/');
-    // }
   };
 
   const handleDemoLogin = async () => {
@@ -45,13 +33,11 @@ function LoginFormPage() {
         password: 'password',
       })
     );
-    // navigate('/');
   };
 
   return (
     <>
       <div className="section-login">
-        {/* <div className="overlay"> */}
         <div className="container">
           <div className="login">
             <h1>Giftify</h1>
@@ -96,7 +82,6 @@ function LoginFormPage() {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 }
