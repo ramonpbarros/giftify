@@ -11,6 +11,7 @@ body {
   --primary-color: #562b99;
   --primary-lighter-color: #bf94ff;
   --primary-brighter-color: #743ae7;
+  --primary-darker-color: #3E206D;
 
   /* Secondary Colors */
   --secondary-color: #2a2438;
@@ -54,10 +55,10 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: var(--primary-brighter-color);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color-red);
+  background: var(--primary-lighter-color);
 }
