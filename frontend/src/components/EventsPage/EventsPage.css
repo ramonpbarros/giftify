@@ -1,0 +1,32 @@
+.page {
+  display: flex;
+}
+
+.sidebar {
+  background-color: var(--neutral-tertiary-color);
+  /* width: 300px; */
+  padding: 5px;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: end;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.background {
+  flex: 1;
+  background-color: whitesmoke;
+  height: calc(100vh - 60px);
+  color: black;
+}
+
+.background h3 {
+  margin: 0;
+}

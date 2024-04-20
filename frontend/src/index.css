@@ -5,7 +5,7 @@
 body {
   margin: 0;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
+  font-family: var(--font-family-primary);
 }
 
 :root {
@@ -20,7 +20,7 @@ body {
 
   /* Neutral Colors */
   --neutral-primary-color: #352f44;
-  --neutral-secondary-color: #5c5470;
+  --neutral-secondary-color: #1a191c;
   --neutral-tertiary-color: #dbd8e3;
 
   /* Font Sizes */
@@ -94,4 +94,14 @@ body {
   border-color: white;
   color: white;
   background-position: 100%;
+}
+
+.animate__animated.animate__bounce {
+  --animate-duration: 2s;
+}
+
+/* This changes all the animations globally */
+:root {
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
 }

@@ -13,7 +13,6 @@ function LoginFormPage() {
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
-  console.log(sessionUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();

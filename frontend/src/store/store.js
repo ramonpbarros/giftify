@@ -1,10 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { thunk } from 'redux-thunk';
 import sessionReducer from './session';
+import eventsReducer from './events';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   session: sessionReducer,
+  events: eventsReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type == 'USER_LOGOUT') {
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 let enhancer;
 
