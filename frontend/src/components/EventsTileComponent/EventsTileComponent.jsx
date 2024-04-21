@@ -1,7 +1,7 @@
 import './EventsTileComponent.css';
 
 function EventsTileComponent({ event, sidebarWidth }) {
-  const maxDescriptionLength = 35;
+  const maxDescriptionLength = 80;
 
   const truncateDescription = (description) => {
     if (description.length > maxDescriptionLength) {
@@ -12,18 +12,12 @@ function EventsTileComponent({ event, sidebarWidth }) {
 
   return (
     <div className="event-card">
-      <div
-        className="event-image"
-        style={{
-          backgroundImage: `url(${event.imgUrl})`,
-          backgroundSize: 'cover',
-          // width: sidebarWidth == 50 ? '30px' : '250px'
-        }}
-      >
+      <div className="event-image">
+        <img src={event.imgUrl} alt={event.eventName} />
       </div>
       <div
         className="event-details"
-        style={{ display: sidebarWidth == 50 ? 'none' : '' }}
+        style={{ display: sidebarWidth == 40 ? 'none' : '' }}
       >
         <strong>{event?.eventName}</strong>
         <p>{truncateDescription(event?.eventDescription)}</p>

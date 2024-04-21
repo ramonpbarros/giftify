@@ -13,6 +13,7 @@
   flex-direction: row;
   align-content: center;
   justify-content: end;
+  cursor: pointer;
 }
 
 .sidebar-header h3 {
@@ -20,6 +21,9 @@
   margin-bottom: 5px;
 }
 
+.sidebar-header:hover {
+
+}
 .background {
   flex: 1;
   background-color: whitesmoke;
