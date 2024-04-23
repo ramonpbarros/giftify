@@ -11,16 +11,12 @@ function Navigation({ isLoaded }) {
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">
-          <NavLink
-            to="/"
-            className="navbar-link"
-            activeClassName="navbar-link-active"
-          >
+          <NavLink to="/" className="navbar-link">
             Giftify
           </NavLink>
         </li>
         {isLoaded && (
-          <li className="                                         profile">
+          <li className="profile">
             <ProfileButton user={sessionUser} />
           </li>
         )}

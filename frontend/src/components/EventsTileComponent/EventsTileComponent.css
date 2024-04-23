@@ -1,6 +1,7 @@
 .event-card {
   display: flex;
   border: 1px solid #ccc;
+  background-color: whitesmoke;
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 10px;

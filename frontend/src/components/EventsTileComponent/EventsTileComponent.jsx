@@ -1,26 +1,24 @@
 import './EventsTileComponent.css';
 
 function EventsTileComponent({ event, sidebarWidth, onClick }) {
-  const maxDescriptionLength = 80;
-
-  const truncateDescription = (description) => {
-    if (description.length > maxDescriptionLength) {
-      return description.substring(0, maxDescriptionLength) + '...';
-    }
-    return description;
-  };
-
   return (
     <div className="event-card" onClick={onClick}>
-      <div className="event-image">
-        <img src={event.imgUrl} alt={event.eventName} />
+      <div
+        className="event-image"
+        style={{
+          backgroundImage: `url(${event.imgUrl})`,
+          backgroundSize: 'cover',
+        }}
+      >
+        {sidebarWidth == 40 ? (
+          <img src={event.imgUrl} alt={event.eventName} />
+        ) : null}
       </div>
       <div
         className="event-details"
-        style={{ display: sidebarWidth == 40 ? 'none' : '' }}
+        style={{ display: sidebarWidth == 40 ? 'none' : 'block' }}
       >
         <strong>{event?.eventName}</strong>
-        <p>{truncateDescription(event?.eventDescription)}</p>
       </div>
     </div>
   );

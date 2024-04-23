@@ -177,7 +177,7 @@ router.delete('/:wishlistId', requireAuth, async (req, res) => {
 });
 
 // Get all Products in a Wishlist
-router.get('/:wishlistId/products', requireAuth, async (req, res) => {
+router.get('/:wishlistId/products', requireAuth, async (req, res, next) => {
   try {
     const currentUser = req.user.toJSON();
     const wishlistId = req.params.wishlistId;
@@ -195,7 +195,7 @@ router.get('/:wishlistId/products', requireAuth, async (req, res) => {
 
     const attendee = await Attendee.findByPk(wishlist.attendeeId);
 
-    if (attendee.userId !== currentUser.id) {
+    if (attendee.id !== wishlist.attendeeId) {
       const err = new Error();
       err.message = 'Forbidden';
       err.status = 403;

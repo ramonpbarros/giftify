@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           attendeeId: 2,
-          eventId: 1,
+          eventId: 2,
         },
         {
           attendeeId: 3,
@@ -29,11 +29,7 @@ module.exports = {
         },
         {
           attendeeId: 5,
-          eventId: 2,
-        },
-        {
-          attendeeId: 6,
-          eventId: 2,
+          eventId: 1,
         },
       ]);
     } catch (error) {
@@ -47,7 +43,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        attendeeId: { [Op.in]: [1, 2, 4, 5, 6] },
+        attendeeId: { [Op.in]: [1, 2, 4, 5] },
       },
       {}
     );

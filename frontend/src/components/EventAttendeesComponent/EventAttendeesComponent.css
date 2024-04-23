@@ -29,6 +29,70 @@
   background-color: #e0e0e0;
 }
 
+.attendees-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attendees-btns {
+  display: flex;
+  justify-content: end;
+}
+
 .attendee-details {
   padding: 8px;
+}
+
+.delete {
+  background: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0.5em 0;
+  border-radius: 5px;
+  color: black;
+  transition: 0.4s ease;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  z-index: 1;
+}
+
+.delete-content {
+  border: 1px solid black;
+  background-image: linear-gradient(to right, transparent 50%, #d22525 50%);
+  background-size: 200%;
+  background-position: 0%;
+}
+
+.delete-content:hover {
+  border-color: white;
+  color: white;
+  background-position: 100%;
+}
+
+.edit {
+  background: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0.5em 0.5em;
+  border-radius: 5px;
+  color: black;
+  transition: 0.4s ease;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  z-index: 1;
+}
+
+.edit-content {
+  border: 1px solid black;
+  background-image: linear-gradient(to right, transparent 50%, #7e3cff 50%);
+  background-size: 200%;
+  background-position: 0%;
+}
+
+.edit-content:hover {
+  border-color: white;
+  color: white;
+  background-position: 100%;
 }

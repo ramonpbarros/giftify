@@ -111,6 +111,72 @@ module.exports = {
           productLink:
             'https://www.amazon.com/fire-tv-stick-lite-latest-alexa-voice-remote-lite/dp/B091G4YP57/ref=pd_rhf_ee_s_rhf_1p_coldstart_d_sccl_2_2/136-5661296-0890101?pd_rd_w=U0YBu&content-id=amzn1.sym.b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_p=b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_r=50PABH9X61P48KPW256G&pd_rd_wg=5fw28&pd_rd_r=5ca4ae8b-4f1c-4efe-824f-8ab2bb723823&pd_rd_i=B091G4YP57&psc=1',
         },
+        {
+          wishlistId: 4,
+          productName: 'Mens Bracelet',
+          productDescription:
+            '(4) Discover the essence of nautical elegance with this simple yet sophisticated bracelet, crafted from premium-grade sailing rope. Its skin-friendly material and comfortable design make it a delight to wear. The bracelet&apos;s size can be effortlessly adjusted with a gentle tug on the knots, ensuring a perfect fit for any wrist.',
+          productImgUrl:
+            'https://i.etsystatic.com/8683017/r/il/8b2d5b/3832630395/il_1588xN.3832630395_l2qp.jpg',
+          productPrice: 27.68,
+          productLink:
+            'https://www.etsy.com/listing/1209132189/mens-bracelet-personalized-sailing-rope?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=home+decor&ref=sr_gallery-1-41&pop=1&sts=1&content_source=08e793dc28b2960dc71ec4c22a504c1496bdfa8e%253A1209132189&search_preloaded_img=1&organic_search_click=1',
+        },
+        {
+          wishlistId: 4,
+          productName: 'LED Table Lamp',
+          productDescription:
+            '(4) Portable - The LED night lamp is battery-powered. It is equipped with a 1500 mAh rechargeable battery allowing up to 48 hours usage. You may connect the lamp to wall outlet all the time as a regular bedside night lamp. You may disconnect it as needed and carry the portable lamp during the night for extra safety. Or, bring it to outdoor camping as a spare light.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61v47BwBHkL._AC_SX679_.jpg',
+          productPrice: 27.95,
+          productLink:
+            'https://www.amazon.com/OBright-Portable-Brightness-Rechargeable-Nightstand/dp/B087LWCGPS?pd_rd_w=g24Dt&content-id=amzn1.sym.d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_p=d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_r=222FXR0ANXA1DAS43GYX&pd_rd_wg=9wwGj&pd_rd_r=6f305290-d0f3-43d7-b3fe-d8f3a590c1de&pd_rd_i=B087LWCGPS&ref_=hmtspring_B087LWCGPS&th=1',
+        },
+        {
+          wishlistId: 4,
+          productName: 'Amazon Fire TV',
+          productDescription:
+            '(4) Our most affordable Fire TV streaming stick - Enjoy fast streaming in Full HD. Comes with Alexa Voice Remote Lite.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61x4Sru7fTL._AC_SX679_.jpg',
+          productPrice: 19.99,
+          productLink:
+            'https://www.amazon.com/fire-tv-stick-lite-latest-alexa-voice-remote-lite/dp/B091G4YP57/ref=pd_rhf_ee_s_rhf_1p_coldstart_d_sccl_2_2/136-5661296-0890101?pd_rd_w=U0YBu&content-id=amzn1.sym.b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_p=b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_r=50PABH9X61P48KPW256G&pd_rd_wg=5fw28&pd_rd_r=5ca4ae8b-4f1c-4efe-824f-8ab2bb723823&pd_rd_i=B091G4YP57&psc=1',
+        },
+        {
+          wishlistId: 5,
+          productName: 'Mens Bracelet',
+          productDescription:
+            '(5) Discover the essence of nautical elegance with this simple yet sophisticated bracelet, crafted from premium-grade sailing rope. Its skin-friendly material and comfortable design make it a delight to wear. The bracelet&apos;s size can be effortlessly adjusted with a gentle tug on the knots, ensuring a perfect fit for any wrist.',
+          productImgUrl:
+            'https://i.etsystatic.com/8683017/r/il/8b2d5b/3832630395/il_1588xN.3832630395_l2qp.jpg',
+          productPrice: 27.68,
+          productLink:
+            'https://www.etsy.com/listing/1209132189/mens-bracelet-personalized-sailing-rope?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=home+decor&ref=sr_gallery-1-41&pop=1&sts=1&content_source=08e793dc28b2960dc71ec4c22a504c1496bdfa8e%253A1209132189&search_preloaded_img=1&organic_search_click=1',
+        },
+        {
+          wishlistId: 5,
+          productName: 'LED Table Lamp',
+          productDescription:
+            '(5) Portable - The LED night lamp is battery-powered. It is equipped with a 1500 mAh rechargeable battery allowing up to 48 hours usage. You may connect the lamp to wall outlet all the time as a regular bedside night lamp. You may disconnect it as needed and carry the portable lamp during the night for extra safety. Or, bring it to outdoor camping as a spare light.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61v47BwBHkL._AC_SX679_.jpg',
+          productPrice: 27.95,
+          productLink:
+            'https://www.amazon.com/OBright-Portable-Brightness-Rechargeable-Nightstand/dp/B087LWCGPS?pd_rd_w=g24Dt&content-id=amzn1.sym.d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_p=d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_r=222FXR0ANXA1DAS43GYX&pd_rd_wg=9wwGj&pd_rd_r=6f305290-d0f3-43d7-b3fe-d8f3a590c1de&pd_rd_i=B087LWCGPS&ref_=hmtspring_B087LWCGPS&th=1',
+        },
+        {
+          wishlistId: 5,
+          productName: 'Amazon Fire TV',
+          productDescription:
+            '(5) Our most affordable Fire TV streaming stick - Enjoy fast streaming in Full HD. Comes with Alexa Voice Remote Lite.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61x4Sru7fTL._AC_SX679_.jpg',
+          productPrice: 19.99,
+          productLink:
+            'https://www.amazon.com/fire-tv-stick-lite-latest-alexa-voice-remote-lite/dp/B091G4YP57/ref=pd_rhf_ee_s_rhf_1p_coldstart_d_sccl_2_2/136-5661296-0890101?pd_rd_w=U0YBu&content-id=amzn1.sym.b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_p=b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_r=50PABH9X61P48KPW256G&pd_rd_wg=5fw28&pd_rd_r=5ca4ae8b-4f1c-4efe-824f-8ab2bb723823&pd_rd_i=B091G4YP57&psc=1',
+        },
       ]);
     } catch (error) {
       console.error('Error during Product bulkCreate:', error);
@@ -124,7 +190,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        wishlistId: { [Op.in]: [1] },
+        wishlistId: { [Op.in]: [1, 2, 3, 4, 5] },
       },
       {}
     );

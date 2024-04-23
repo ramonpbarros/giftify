@@ -13,6 +13,7 @@
   align-content: center;
   justify-content: end;
   cursor: pointer;
+  margin-bottom: 1em;
 }
 
 .sidebar-header h3 {

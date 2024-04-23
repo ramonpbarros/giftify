@@ -15,6 +15,9 @@ function EventAttendeesComponent({ attendees, event }) {
       (attendee) => attendee.Wishlist?.id === attendeeId
     );
 
+    console.log('attendeeId: ', attendeeId);
+    console.log('attendees: ', attendees);
+
     setExpandedItem((prevIndex) =>
       prevIndex === selectedIndex ? null : selectedIndex
     );
@@ -22,6 +25,10 @@ function EventAttendeesComponent({ attendees, event }) {
     if (selectedIndex !== -1) {
       dispatch(getAllProductsWishId(attendeeId));
     }
+  };
+
+  const handleDelete = () => {
+    alert('yes');
   };
 
   const handleEdit = () => {
@@ -44,12 +51,28 @@ function EventAttendeesComponent({ attendees, event }) {
               }`}
               onClick={() => toggleItem(attendee.Wishlist?.id)}
             >
-              <p>{attendee.username}</p>
-              {event.Organizer && sessionUser.username === event.Organizer.username && (
-                <button onClick={(e) => handleEdit(e, attendee.id)}>
-                  delete
-                </button>
-              )}
+              <div className="attendees-content">
+                <p>{attendee.username}</p>
+                <div className="attendees-btns">
+                  {sessionUser.username === attendee.username && (
+                    <button
+                      className="edit edit-content"
+                      onClick={(e) => handleDelete(e, attendee.id)}
+                    >
+                      Edit
+                    </button>
+                  )}
+                  {event.Organizer &&
+                    sessionUser.username === event.Organizer.username && (
+                      <button
+                        className="delete delete-content"
+                        onClick={(e) => handleEdit(e, attendee.id)}
+                      >
+                        Delete
+                      </button>
+                    )}
+                </div>
+              </div>
               {expandedItem === index && (
                 <div className="attendee-details">
                   <hr />

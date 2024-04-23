@@ -21,6 +21,8 @@ function EventsPage() {
   const [sidebarWidth, setSidebarWidth] = useState(300);
   const [clickedEventId, setClickedEventId] = useState(null);
 
+  console.log('eventDetails: ', eventDetails);
+
   useEffect(() => {
     dispatch(getAllEvents());
     dispatch(getEventsByCurrentUser());

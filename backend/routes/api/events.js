@@ -173,11 +173,13 @@ router.get('/:eventId', requireAuth, async (req, res) => {
     },
   });
 
+
   for (const attendee of attendees) {
+    console.log('attendee: ', attendee);
     const wishlist = await Wishlist.findAll({
       where: {
         eventId: req.params.eventId,
-        attendeeId: attendee.userId,
+        attendeeId: attendee.id,
       },
     });
 

@@ -37,6 +37,9 @@ body {
   --font-family-primary: 'Roboto', sans-serif;
   --font-family-secondary: 'Roboto Flex', sans-serif;
   --font-family-tertiary: 'Lobster', sans-serif;
+
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
 }
 
 .container {
@@ -98,10 +101,4 @@ body {
 
 .animate__animated.animate__bounce {
   --animate-duration: 2s;
-}
-
-/* This changes all the animations globally */
-:root {
-  --animate-duration: 800ms;
-  --animate-delay: 0.9s;
 }
