@@ -1,0 +1,34 @@
+.attendees-container {
+  padding: 1em 1em;
+  margin: 0 1em;
+  background-color: var(--neutral-tertiary-color);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.attendees-header {
+  margin-bottom: 1em;
+}
+
+.attendees-list {
+  padding: 0;
+}
+
+.attendees-item {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 1px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.attendees-item:hover {
+  background-color: #e0e0e0;
+}
+
+.attendee-details {
+  padding: 8px;
+}

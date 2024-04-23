@@ -2,7 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import './EventsPage.css';
 import { useEffect, useState } from 'react';
-import { getAllEvents, getEventsByCurrentUser } from '../../store/events';
+import {
+  getAllEvents,
+  getEventById,
+  getEventsByCurrentUser,
+} from '../../store/events';
 import EventsCardComponent from '../EventsCardComponent';
 import EventsTileComponent from '../EventsTileComponent';
 import { HiLogin } from 'react-icons/hi';
@@ -11,20 +15,27 @@ import { HiLogout } from 'react-icons/hi';
 function EventsPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const events = useSelector((state) => state.events.eventsList.Events);
   const eventsCurrent = useSelector((state) => state.events.eventsCurr.Events);
+  const eventDetails = useSelector((state) => state.events.eventDetails);
+
   const [sidebarWidth, setSidebarWidth] = useState(300);
+  const [clickedEventId, setClickedEventId] = useState(null);
 
   useEffect(() => {
     dispatch(getAllEvents());
     dispatch(getEventsByCurrentUser());
   }, [dispatch]);
 
-  if (!sessionUser) return <Navigate to="/signup" replace={true} />;
-
   const toggleSidebarWidth = () => {
     setSidebarWidth((prevWidth) => (prevWidth === 300 ? 40 : 300));
   };
+
+  const handleEventClick = (eventId) => {
+    dispatch(getEventById(eventId));
+    setClickedEventId(eventId);
+  };
+
+  if (!sessionUser) return <Navigate to="/signup" replace={true} />;
 
   return (
     <>
@@ -41,21 +52,28 @@ function EventsPage() {
           )}
           <div className="event-tile">
             {sessionUser &&
+              eventsCurrent &&
               eventsCurrent.map((event) => (
                 <EventsTileComponent
                   key={event.id}
                   event={event}
                   sidebarWidth={sidebarWidth}
+                  onClick={() => handleEventClick(event.id)}
                 />
               ))}
           </div>
         </div>
         <div className="background">
-          <div>All events</div>
-          {sessionUser &&
-            events.map((event) => (
-              <EventsCardComponent key={event.id} event={event} />
-            ))}
+          {eventsCurrent && (
+            <>
+              {clickedEventId && (
+                <EventsCardComponent
+                  key={clickedEventId}
+                  event={eventDetails[clickedEventId]}
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
     </>

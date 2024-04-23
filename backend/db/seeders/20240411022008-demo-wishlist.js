@@ -12,20 +12,28 @@ module.exports = {
     try {
       await Wishlist.bulkCreate([
         {
+          attendeeId: 1,
+          eventId: 1,
+        },
+        {
           attendeeId: 2,
           eventId: 1,
         },
         {
+          attendeeId: 3,
+          eventId: 1,
+        },
+        {
           attendeeId: 4,
-          eventId: 3,
+          eventId: 2,
         },
         {
           attendeeId: 5,
-          eventId: 4,
+          eventId: 2,
         },
         {
           attendeeId: 6,
-          eventId: 5,
+          eventId: 2,
         },
       ]);
     } catch (error) {

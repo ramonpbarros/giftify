@@ -44,6 +44,73 @@ module.exports = {
           productLink:
             'https://www.amazon.com/Bialetti-275-06-Express-6-Cup-Espresso/dp/B00004RFRU/?_encoding=UTF8&pd_rd_w=mNjFt&content-id=amzn1.sym.034d21de-f825-413a-8c94-7d57d209901e&pf_rd_p=034d21de-f825-413a-8c94-7d57d209901e&pf_rd_r=YKGXX0DNBEG5D2J8R0T9&pd_rd_wg=ItZWI&pd_rd_r=50a2606d-9e0d-4b63-8bdf-82d10a2f117d&ref_=pd_gw_gcx_gw_per_1&th=1',
         },
+        {
+          wishlistId: 2,
+          productName: 'Dinnerware Set',
+          productDescription:
+            'UNIQUE SET/ 4 DINNER PLATES (This is a beautiful set of four plates. Set is slightly discounted due to the fact that some of the profiles vary slightly and some may have a little bit of a wobble to them.)',
+          productImgUrl:
+            'https://i.etsystatic.com/15117434/r/il/8a5b96/1680890709/il_1588xN.1680890709_tad7.jpg',
+          productPrice: 30.0,
+          productLink:
+            'https://www.etsy.com/listing/573430519/dinnerware-set-pottery-dinnerware?ref=anchored_listing&frs=1&sts=1',
+        },
+        {
+          wishlistId: 2,
+          productName:
+            'Wood "COILED PLANTER" Matte Finish Mid Century Indoor Planter',
+          productDescription:
+            'The Coiled was designed to dress your plants in style, just like the owner! Our planters will modernize and bring out the beauty of your plants. "The Coiled" exudes a bauhaus/Japanese cool!',
+          productImgUrl:
+            'https://i.etsystatic.com/23301702/r/il/a87ee7/2580118473/il_1588xN.2580118473_fe5k.jpg',
+          productPrice: 26.0,
+          productLink:
+            'https://www.etsy.com/listing/865339439/wood-coiled-planter-matte-finish-mid?click_key=1a2ff3abc045f25c33c364420f91dbbb43943b55%3A865339439&click_sum=43e6bb4b&ref=search2_top_narrowing_intent_modules_etsys_pick-2&sts=1',
+        },
+        {
+          wishlistId: 2,
+          productName: 'Fruit And Veggie Hammock',
+          productDescription:
+            'The original moka coffee pot: Moka Express is the original stovetop espresso maker, it provides the experience of the real Italian way of preparing a tasteful coffee, its unique shape and the inimitable gentleman with moustache date back to 1933, when Alfonso Bialetti invented it.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/51+I23YIolL._AC_SX679_.jpg',
+          productPrice: 40.0,
+          productLink:
+            'https://www.amazon.com/Bialetti-275-06-Express-6-Cup-Espresso/dp/B00004RFRU/?_encoding=UTF8&pd_rd_w=mNjFt&content-id=amzn1.sym.034d21de-f825-413a-8c94-7d57d209901e&pf_rd_p=034d21de-f825-413a-8c94-7d57d209901e&pf_rd_r=YKGXX0DNBEG5D2J8R0T9&pd_rd_wg=ItZWI&pd_rd_r=50a2606d-9e0d-4b63-8bdf-82d10a2f117d&ref_=pd_gw_gcx_gw_per_1&th=1',
+        },
+        {
+          wishlistId: 3,
+          productName: 'Mens Bracelet',
+          productDescription:
+            'Discover the essence of nautical elegance with this simple yet sophisticated bracelet, crafted from premium-grade sailing rope. Its skin-friendly material and comfortable design make it a delight to wear. The bracelet&apos;s size can be effortlessly adjusted with a gentle tug on the knots, ensuring a perfect fit for any wrist.',
+          productImgUrl:
+            'https://i.etsystatic.com/8683017/r/il/8b2d5b/3832630395/il_1588xN.3832630395_l2qp.jpg',
+          productPrice: 27.68,
+          productLink:
+            'https://www.etsy.com/listing/1209132189/mens-bracelet-personalized-sailing-rope?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=home+decor&ref=sr_gallery-1-41&pop=1&sts=1&content_source=08e793dc28b2960dc71ec4c22a504c1496bdfa8e%253A1209132189&search_preloaded_img=1&organic_search_click=1',
+        },
+        {
+          wishlistId: 3,
+          productName: 'LED Table Lamp',
+          productDescription:
+            'Portable - The LED night lamp is battery-powered. It is equipped with a 1500 mAh rechargeable battery allowing up to 48 hours usage. You may connect the lamp to wall outlet all the time as a regular bedside night lamp. You may disconnect it as needed and carry the portable lamp during the night for extra safety. Or, bring it to outdoor camping as a spare light.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61v47BwBHkL._AC_SX679_.jpg',
+          productPrice: 27.95,
+          productLink:
+            'https://www.amazon.com/OBright-Portable-Brightness-Rechargeable-Nightstand/dp/B087LWCGPS?pd_rd_w=g24Dt&content-id=amzn1.sym.d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_p=d568a753-ec73-4eaa-82ba-ce55dec90b7a&pf_rd_r=222FXR0ANXA1DAS43GYX&pd_rd_wg=9wwGj&pd_rd_r=6f305290-d0f3-43d7-b3fe-d8f3a590c1de&pd_rd_i=B087LWCGPS&ref_=hmtspring_B087LWCGPS&th=1',
+        },
+        {
+          wishlistId: 3,
+          productName: 'Amazon Fire TV',
+          productDescription:
+            'Our most affordable Fire TV streaming stick - Enjoy fast streaming in Full HD. Comes with Alexa Voice Remote Lite.',
+          productImgUrl:
+            'https://m.media-amazon.com/images/I/61x4Sru7fTL._AC_SX679_.jpg',
+          productPrice: 19.99,
+          productLink:
+            'https://www.amazon.com/fire-tv-stick-lite-latest-alexa-voice-remote-lite/dp/B091G4YP57/ref=pd_rhf_ee_s_rhf_1p_coldstart_d_sccl_2_2/136-5661296-0890101?pd_rd_w=U0YBu&content-id=amzn1.sym.b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_p=b600c7d8-57ec-4c97-938f-a8d4e9e462a3&pf_rd_r=50PABH9X61P48KPW256G&pd_rd_wg=5fw28&pd_rd_r=5ca4ae8b-4f1c-4efe-824f-8ab2bb723823&pd_rd_i=B091G4YP57&psc=1',
+        },
       ]);
     } catch (error) {
       console.error('Error during Product bulkCreate:', error);

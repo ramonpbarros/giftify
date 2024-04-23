@@ -1,6 +1,6 @@
 import './EventsTileComponent.css';
 
-function EventsTileComponent({ event, sidebarWidth }) {
+function EventsTileComponent({ event, sidebarWidth, onClick }) {
   const maxDescriptionLength = 80;
 
   const truncateDescription = (description) => {
@@ -11,7 +11,7 @@ function EventsTileComponent({ event, sidebarWidth }) {
   };
 
   return (
-    <div className="event-card">
+    <div className="event-card" onClick={onClick}>
       <div className="event-image">
         <img src={event.imgUrl} alt={event.eventName} />
       </div>
