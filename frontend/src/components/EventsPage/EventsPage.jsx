@@ -16,8 +16,11 @@ import { HiLogout } from 'react-icons/hi';
 function EventsPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const eventsCurrent = useSelector((state) => state.events.eventsCurr.Events);
-  const eventDetails = useSelector((state) => state.events.eventDetails);
+  const eventsCurrent = useSelector((state) => state.events);
+  const state = useSelector((state) => state);
+  // const eventDetails = useSelector((state) => state.events.eventDetails);
+  // const events = useSelector((state) => state.events);
+  console.log(state)
 
   const [sidebarWidth, setSidebarWidth] = useState(300);
   const [clickedEventId, setClickedEventId] = useState(null);
@@ -39,16 +42,14 @@ function EventsPage() {
     setClickedEventId(eventId);
   };
 
-  const handleCreateEvent = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newEvent = { eventName, eventDescription, eventDate };
     if (eventName && eventDescription && eventDate) {
-      return dispatch(createNewEvent(newEvent)).then(
-        setEventName(''),
-        setEventDescription(''),
-        setEventDate('')
-      );
+      await dispatch(createNewEvent(newEvent));
+      setEventName('');
+      setEventDescription('');
+      setEventDate('');
     }
   };
 
@@ -64,7 +65,7 @@ function EventsPage() {
                 <h3>My Events&nbsp;</h3>{' '}
                 <HiLogin style={{ fontSize: '20px' }} />
               </div>
-              <form onSubmit={handleCreateEvent}>
+              <form onSubmit={handleSubmit}>
                 <input
                   className="create-reward-input"
                   placeholder={'Event Name'}
@@ -100,23 +101,24 @@ function EventsPage() {
           <div className="event-tile">
             {sessionUser &&
               eventsCurrent &&
-              eventsCurrent.map((event) => (
+              Object.keys(eventsCurrent).map((eventId) => (
                 <EventsTileComponent
-                  key={event.id}
-                  event={event}
+                  key={eventId}
+                  event={eventsCurrent[eventId]}
                   sidebarWidth={sidebarWidth}
-                  onClick={() => handleEventClick(event.id)}
+                  onClick={() => handleEventClick(eventId)}
                 />
               ))}
           </div>
         </div>
         <div className="background">
+          {console.log('eventsCurrent[clickedEventId]: ', eventsCurrent[clickedEventId])}
           {eventsCurrent && (
             <>
               {clickedEventId && (
                 <EventsCardComponent
                   key={clickedEventId}
-                  event={eventDetails[clickedEventId]}
+                  event={eventsCurrent[clickedEventId]}
                 />
               )}
             </>

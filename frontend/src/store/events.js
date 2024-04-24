@@ -7,34 +7,34 @@ const CREATE_EVENT = 'events/CREATE_EVENT';
 const UPDATE_EVENT = 'events/UPDATE_EVENT';
 const DELETE_EVENT = 'events/DELETE_EVENT';
 
-const loadEvents = (eventList) => ({
+const loadEvents = (payload) => ({
   type: LOAD_EVENTS,
-  payload: eventList,
+  payload,
 });
 
-const loadEvent = (event) => ({
+const loadEvent = (payload) => ({
   type: LOAD_EVENT,
-  payload: event,
+  payload,
 });
 
 const loadEventsCurrentUser = (events) => ({
   type: LOAD_EVENTS_CURRENT_USER,
-  payload: events,
+  events,
 });
 
 const createEvent = (event) => ({
   type: CREATE_EVENT,
-  payload: event,
+  event,
 });
 
 const updateEvent = (event) => ({
   type: UPDATE_EVENT,
-  payload: event,
+  event,
 });
 
 const deleteEvent = (eventId) => ({
   type: DELETE_EVENT,
-  payload: eventId,
+  eventId,
 });
 
 export const getAllEvents = () => async (dispatch) => {
@@ -83,6 +83,7 @@ export const getEventById = (eventId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log('getEventById: ', data);
     dispatch(loadEvent(data));
     return data;
   }
@@ -132,61 +133,40 @@ export const removeEvent = (eventId) => async (dispatch) => {
   }
 };
 
-const initialState = {
-  eventsList: [],
-  eventsCurr: [],
-  newEvent: {},
-  eventDetails: {},
-  updatedEvent: {},
-  deletedEventId: null,
-};
-
-let deletedEventId;
-
-const eventsReducer = (state = initialState, action) => {
+function eventReducer(state = {}, action) {
+  const newState = { ...state };
   switch (action.type) {
     case LOAD_EVENTS:
-      return {
-        ...state,
-        eventsList: action.payload,
-      };
-    case LOAD_EVENT:
-      return {
-        ...state,
-        eventDetails: {
-          [action.payload.id]: action.payload,
-        },
-      };
-    case CREATE_EVENT:
-      return {
-        ...state,
-        newEvent: {
-          [action.payload.id]: action.payload,
-        },
-      };
+      action.events.Events.forEach((event) => {
+        newState[event.id] = event;
+      });
+      return newState;
     case LOAD_EVENTS_CURRENT_USER:
-      return {
-        ...state,
-        eventsCurr: action.payload,
+      action.events.Events.forEach((event) => {
+        newState[event.id] = event;
+      });
+      return newState;
+    case LOAD_EVENT:
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case CREATE_EVENT:
+      newState[action.event.id] = {
+        ...newState[action.event.id],
+        ...action.event,
       };
+      return newState;
     case UPDATE_EVENT:
-      return {
-        ...state,
-        updatedEvent: {
-          [action.payload.id]: action.payload,
-        },
+      newState[action.event.id] = {
+        ...newState[action.event.id],
+        ...action.event,
       };
+      return newState;
     case DELETE_EVENT:
-      deletedEventId = action.payload;
-      return {
-        ...state,
-        events: Array.isArray(state.events)
-          ? state.events.filter((event) => event.id !== deletedEventId)
-          : state.events,
-      };
+      delete newState[action.eventId];
+      return newState;
     default:
       return state;
   }
-};
+}
 
-export default eventsReducer;
+export default eventReducer;

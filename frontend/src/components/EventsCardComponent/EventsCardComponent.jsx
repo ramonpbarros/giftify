@@ -9,6 +9,8 @@ function EventsComponent({ event }) {
   const sessionUser = useSelector((state) => state.session.user);
   const attendees = event?.Attendees;
 
+  // console.log('event: ', event);
+
   const formattedDate = (dateString) => {
     const [year, month, day] = dateString.split('-');
     return `${month}/${day}/${year}`;
@@ -25,10 +27,11 @@ function EventsComponent({ event }) {
     <>
       <div className="event-card-current">
         <div className="event-image-current">
-          <img src={event?.imgUrl} alt={event?.eventName} />
+          {/* eventsCurrent?.[clickedEventId]?.imgUrl */}
+          <img src={event.imgUrl} alt={event.eventName} />
         </div>
         <div className="event-details-current">
-          <h1>{event?.eventName}</h1>
+          <h1>{event.eventName}</h1>
           {event?.Organizer?.username === sessionUser.username && (
             <div className="event-btns">
               {/* <button className="edit edit-content">Edit</button> */}
@@ -40,7 +43,7 @@ function EventsComponent({ event }) {
               </button> */}
               <OpenModalButton
                 buttonText="Edit"
-                modalComponent={<EditEventModal event={event}/>}
+                modalComponent={<EditEventModal event={event} />}
               />
               <OpenModalButton
                 buttonText="Delete"

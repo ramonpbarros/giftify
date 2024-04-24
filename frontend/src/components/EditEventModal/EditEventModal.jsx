@@ -7,11 +7,16 @@ import './EditEventModal.css';
 export default function EditEventModal({ event }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+
   const [eventName, setEventName] = useState(event.eventName || '');
   const [eventDescription, setEventDescription] = useState(
     event.eventDescription || ''
   );
-  const [eventDate, setEventDate] = useState(event.eventDate || '');
+  // const [eventDate, setEventDate] = useState(event.eventDate || '');
+  const [eventDate, setEventDate] = useState(
+    event.eventDate || new Date().toISOString().substr(0, 10)
+  );
+
   const [imgUrl, setImgUrl] = useState(event.imgUrl || '');
   const [maxAttendees, setMaxAttendees] = useState(event.maxAttendees || '');
   const [maxGiftCost, setMaxGiftCost] = useState(event.maxGiftCost || '');
