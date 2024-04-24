@@ -83,7 +83,6 @@ export const getEventById = (eventId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log('getEventById: ', data);
     dispatch(loadEvent(data));
     return data;
   }
@@ -127,9 +126,10 @@ export const removeEvent = (eventId) => async (dispatch) => {
     method: 'DELETE',
   });
 
+  const itemData = await response.json();
   if (response.ok) {
-    dispatch(deleteEvent(response));
-    return response;
+    dispatch(deleteEvent(eventId));
+    return itemData;
   }
 };
 

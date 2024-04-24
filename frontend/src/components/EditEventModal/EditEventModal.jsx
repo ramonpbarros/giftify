@@ -18,8 +18,8 @@ export default function EditEventModal({ event }) {
   );
 
   const [imgUrl, setImgUrl] = useState(event.imgUrl || '');
-  const [maxAttendees, setMaxAttendees] = useState(event.maxAttendees || '');
-  const [maxGiftCost, setMaxGiftCost] = useState(event.maxGiftCost || '');
+  const [maxAttendees, setMaxAttendees] = useState(event.maxAttendees || 2);
+  const [maxGiftCost, setMaxGiftCost] = useState(event.maxGiftCost || 10);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
@@ -57,7 +57,7 @@ export default function EditEventModal({ event }) {
           <label>
             Name
             <input
-              placeholder="Event Name"
+              placeholder={eventName}
               type="text"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
@@ -65,11 +65,12 @@ export default function EditEventModal({ event }) {
           </label>
           <label>
             Description
-            <input
+            <textarea
               placeholder="Event Description"
-              type="text"
               value={eventDescription}
               onChange={(e) => setEventDescription(e.target.value)}
+              rows={4}
+              style={{ resize: 'none', overflowY: 'auto' }}
             />
           </label>
           <label>
@@ -93,21 +94,29 @@ export default function EditEventModal({ event }) {
           <label>
             Max Attendees
             <input
-              placeholder="Max Attendees"
+              placeholder={2}
               type="number"
               value={maxAttendees}
               onChange={(e) => setMaxAttendees(e.target.value)}
+              min={0}
             />
           </label>
           <label>
             Max Gift Cost
             <input
-              placeholder="Max Gift Cost"
+              placeholder={`$ ${10}`}
               type="number"
               value={maxGiftCost}
               onChange={(e) => setMaxGiftCost(e.target.value)}
+              min={0}
             />
           </label>
+          {Object.keys(errors).length > 0 && (
+            <>
+              <small className="error">{errors.maxGiftCost}</small>
+              <small className="error">{errors.maxAttendees}</small>
+            </>
+          )}
           <button className="btn btn-content" type="submit">
             Submit
           </button>

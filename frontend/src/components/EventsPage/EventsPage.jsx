@@ -4,7 +4,7 @@ import './EventsPage.css';
 import { useEffect, useState } from 'react';
 import {
   createNewEvent,
-  getAllEvents,
+  // getAllEvents,
   getEventById,
   getEventsByCurrentUser,
 } from '../../store/events';
@@ -17,19 +17,14 @@ function EventsPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const eventsCurrent = useSelector((state) => state.events);
-  const state = useSelector((state) => state);
-  // const eventDetails = useSelector((state) => state.events.eventDetails);
-  // const events = useSelector((state) => state.events);
-  console.log(state)
 
   const [sidebarWidth, setSidebarWidth] = useState(300);
   const [clickedEventId, setClickedEventId] = useState(null);
-  const [eventName, setEventName] = useState();
-  const [eventDescription, setEventDescription] = useState();
-  const [eventDate, setEventDate] = useState();
+  const [eventName, setEventName] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
+  const [eventDate, setEventDate] = useState('');
 
   useEffect(() => {
-    dispatch(getAllEvents());
     dispatch(getEventsByCurrentUser());
   }, [dispatch]);
 
@@ -85,7 +80,7 @@ function EventsPage() {
                 <input
                   className="create-reward-input"
                   placeholder={'Date'}
-                  type="text"
+                  type="date"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
                   required
@@ -112,7 +107,10 @@ function EventsPage() {
           </div>
         </div>
         <div className="background">
-          {console.log('eventsCurrent[clickedEventId]: ', eventsCurrent[clickedEventId])}
+          {console.log(
+            'eventsCurrent[clickedEventId]: ',
+            eventsCurrent[clickedEventId]
+          )}
           {eventsCurrent && (
             <>
               {clickedEventId && (

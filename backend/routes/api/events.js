@@ -230,6 +230,7 @@ router.get('/:eventId', requireAuth, async (req, res) => {
   } else if (!event.private) {
     formattedEvent.Attendees = attendees.map((attendee) => ({
       id: attendee.User.id,
+      username: attendee.User.username,
       userId: attendee.userId,
       Wishlist: attendee.User.dataValues.Wishlist || null,
     }));
@@ -246,8 +247,6 @@ router.get('/:eventId', requireAuth, async (req, res) => {
 // Create Event
 router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
   const { eventName, eventDescription, eventDate } = req.body;
-
-  console.log('HERE!!!', req.body);
 
   const currentUser = req.user.toJSON();
 
