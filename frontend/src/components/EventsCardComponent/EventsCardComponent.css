@@ -4,6 +4,10 @@
   padding-left: 1em;
 }
 
+.event-btns {
+  display: flex;
+}
+
 .event-image-current img {
   width: 200px;
   height: auto;

@@ -173,9 +173,7 @@ router.get('/:eventId', requireAuth, async (req, res) => {
     },
   });
 
-
   for (const attendee of attendees) {
-    console.log('attendee: ', attendee);
     const wishlist = await Wishlist.findAll({
       where: {
         eventId: req.params.eventId,
@@ -226,12 +224,13 @@ router.get('/:eventId', requireAuth, async (req, res) => {
     formattedEvent.Attendees = attendees.map((attendee) => ({
       id: attendee.User.id,
       username: attendee.User.username,
+      userId: attendee.userId,
       Wishlist: attendee.User.dataValues.Wishlist || null,
     }));
   } else if (!event.private) {
     formattedEvent.Attendees = attendees.map((attendee) => ({
       id: attendee.User.id,
-      username: attendee.User.username,
+      userId: attendee.userId,
       Wishlist: attendee.User.dataValues.Wishlist || null,
     }));
   }
@@ -246,7 +245,9 @@ router.get('/:eventId', requireAuth, async (req, res) => {
 
 // Create Event
 router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
-  const { eventName, eventDescription, eventDate, private } = req.body;
+  const { eventName, eventDescription, eventDate } = req.body;
+
+  console.log('HERE!!!', req.body);
 
   const currentUser = req.user.toJSON();
 
@@ -255,20 +256,14 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
     eventName,
     eventDescription,
     eventDate,
-    private,
+    private: true,
   });
 
-  if (newEvent && newEvent.private) {
+  if (newEvent) {
     await Attendee.create({
       userId: currentUser.id,
       eventId: newEvent.id,
       status: 'attending',
-    });
-  } else if (newEvent && !newEvent.private) {
-    await Attendee.create({
-      userId: currentUser.id,
-      eventId: newEvent.id,
-      status: null,
     });
   }
 
@@ -392,30 +387,32 @@ router.get('/:eventId/attendees', requireAuth, async (req, res) => {
     const currentUser = req.user.toJSON();
 
     // Private event created by current user
-    if (event.private && event.userId === currentUser.id) {
-      const attendees = await Attendee.findAll({
-        where: {
-          eventId: req.params.eventId,
-        },
-        include: {
-          model: User,
-          attributes: ['id', 'username', 'firstName', 'lastName'],
-        },
-      });
+    // if (event.userId === currentUser.id) {
+    //   const attendees = await Attendee.findAll({
+    //     where: {
+    //       eventId: req.params.eventId,
+    //     },
+    //     include: {
+    //       model: User,
+    //       attributes: ['id', 'username', 'firstName', 'lastName'],
+    //     },
+    //   });
 
-      const formattedAttendees = attendees.map((attendee) => {
-        return {
-          id: attendee.id,
-          username: attendee.User.username,
-          firstName: attendee.User.firstName,
-          lastName: attendee.User.lastName,
-          status: attendee.status,
-        };
-      });
+    //   const formattedAttendees = attendees.map((attendee) => {
+    //     return {
+    //       id: attendee.id,
+    //       username: attendee.User.username,
+    //       firstName: attendee.User.firstName,
+    //       lastName: attendee.User.lastName,
+    //       status: attendee.status,
+    //     };
+    //   });
 
-      res.json({ Attendees: formattedAttendees });
-      // Private event created by current user is an attendee
-    } else if (event.private && currentUser) {
+    //   res.json({ Attendees: formattedAttendees });
+    //   // Private event created by current user is an attendee
+    // }
+    // else
+    if (event.userId === currentUser.id) {
       const userAttendee = await Attendee.findOne({
         where: {
           eventId: req.params.eventId,
@@ -445,8 +442,6 @@ router.get('/:eventId/attendees', requireAuth, async (req, res) => {
         });
 
         res.json({ Attendees: formattedAttendees });
-      } else {
-        res.status(403).json({ message: 'Forbidden' });
       }
     } else {
       const attendees = await Attendee.findAll({

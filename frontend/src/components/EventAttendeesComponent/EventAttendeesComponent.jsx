@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './EventAttendeesComponent.css';
 import { getAllProductsWishId } from '../../store/products';
 import ProductCardComponent from '../ProductCardComponent/ProductCardComponent';
+import { removeAttendace } from '../../store/attendees';
 
 function EventAttendeesComponent({ attendees, event }) {
   const dispatch = useDispatch();
@@ -15,9 +16,6 @@ function EventAttendeesComponent({ attendees, event }) {
       (attendee) => attendee.Wishlist?.id === attendeeId
     );
 
-    console.log('attendeeId: ', attendeeId);
-    console.log('attendees: ', attendees);
-
     setExpandedItem((prevIndex) =>
       prevIndex === selectedIndex ? null : selectedIndex
     );
@@ -27,8 +25,8 @@ function EventAttendeesComponent({ attendees, event }) {
     }
   };
 
-  const handleDelete = () => {
-    alert('yes');
+  const handleDelete = (eventId, userId) => {
+    dispatch(removeAttendace(eventId, userId));
   };
 
   const handleEdit = () => {
@@ -57,7 +55,7 @@ function EventAttendeesComponent({ attendees, event }) {
                   {sessionUser.username === attendee.username && (
                     <button
                       className="edit edit-content"
-                      onClick={(e) => handleDelete(e, attendee.id)}
+                      onClick={() => handleEdit(event.id, event.userId)}
                     >
                       Edit
                     </button>
@@ -66,7 +64,7 @@ function EventAttendeesComponent({ attendees, event }) {
                     sessionUser.username === event.Organizer.username && (
                       <button
                         className="delete delete-content"
-                        onClick={(e) => handleEdit(e, attendee.id)}
+                        onClick={() => handleDelete(event.id, attendee.userId)}
                       >
                         Delete
                       </button>

@@ -54,7 +54,7 @@
   align-content: center;
   justify-content: center;
   display: flex;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .delete-content {
@@ -81,7 +81,7 @@
   align-content: center;
   justify-content: center;
   display: flex;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .edit-content {

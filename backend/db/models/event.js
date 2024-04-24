@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       private: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
       },
       imgUrl: {
         type: DataTypes.STRING,

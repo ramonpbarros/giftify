@@ -10,8 +10,6 @@ const loadProducts = (productList) => ({
 export const getAllProductsWishId = (wishlistId) => async (dispatch) => {
   const response = await csrfFetch(`/api/wishlists/${wishlistId}/products`);
 
-  console.log(response)
-
   if (response.ok) {
     const data = await response.json();
     dispatch(loadProducts(data));

@@ -1,5 +1,5 @@
 import { useModal } from '../../context/Modal';
-// import './OpenModalButton.css';
+import './OpenModalButton.css';
 
 function OpenModalButton({
   modalComponent,
@@ -16,7 +16,12 @@ function OpenModalButton({
   };
 
   return (
-    <button className="nav-btn" onClick={onClick}>
+    <button
+      className={
+        buttonText === 'Delete' ? 'delete delete-content' : 'edit edit-content'
+      }
+      onClick={onClick}
+    >
       {buttonText}
     </button>
   );
