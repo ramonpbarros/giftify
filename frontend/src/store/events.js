@@ -137,7 +137,7 @@ const initialState = {
   eventsCurr: [],
   newEvent: {},
   eventDetails: {},
-  updatedSpot: {},
+  updatedEvent: {},
   deletedEventId: null,
 };
 
@@ -180,7 +180,7 @@ const eventsReducer = (state = initialState, action) => {
       deletedEventId = action.payload;
       return {
         ...state,
-        events: Array.isArray(state.spots)
+        events: Array.isArray(state.events)
           ? state.events.filter((event) => event.id !== deletedEventId)
           : state.events,
       };

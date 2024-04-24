@@ -3,11 +3,13 @@ import { thunk } from 'redux-thunk';
 import sessionReducer from './session';
 import eventsReducer from './events';
 import productsReducer from './products';
+import attendeesReducer from './attendees';
 
 const appReducer = combineReducers({
   session: sessionReducer,
   events: eventsReducer,
   products: productsReducer,
+  attendees: attendeesReducer,
 });
 
 const rootReducer = (state, action) => {
