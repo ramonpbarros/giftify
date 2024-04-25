@@ -147,8 +147,6 @@ router.get('/current', requireAuth, async (req, res) => {
       return formattedEvent;
     });
 
-    console.log('formattedEvents: ', formattedEvents)
-
     res.json({ Events: formattedEvents });
   } catch (error) {
     console.error('Error fetching events:', error);
