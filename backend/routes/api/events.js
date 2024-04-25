@@ -32,6 +32,10 @@ router.get('/', requireAuth, async (req, res) => {
     const events = await Event.findAll({
       limit,
       offset,
+      include: {
+        model: User,
+        attributes: ['username', 'firstName', 'lastName'],
+      },
     });
 
     const formattedEvents = events.map((event) => {
@@ -93,6 +97,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
     const eventIds = attendances.map((attendance) => attendance.eventId);
 
+
     const events = await Event.findAll({
       where: {
         id: eventIds,
@@ -141,6 +146,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
       return formattedEvent;
     });
+
+    console.log('formattedEvents: ', formattedEvents)
 
     res.json({ Events: formattedEvents });
   } catch (error) {

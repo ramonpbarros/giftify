@@ -26,7 +26,7 @@
 }
 
 .navbar-link:hover {
-  color: var(--primary-lighter-color);
+  color: var(--primary-lighter-color)!important;
 }
 
 .profile-dropdown {

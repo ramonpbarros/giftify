@@ -5,6 +5,7 @@ const LOAD_EVENT = 'events/LOAD_EVENT';
 const LOAD_EVENTS_CURRENT_USER = 'events/LOAD_EVENTS_CURRENT_USER';
 const CREATE_EVENT = 'events/CREATE_EVENT';
 const UPDATE_EVENT = 'events/UPDATE_EVENT';
+const CLEAR_EVENTS = 'events/CLEAR_EVENTS';
 const DELETE_EVENT = 'events/DELETE_EVENT';
 
 const loadEvents = (payload) => ({
@@ -30,6 +31,10 @@ const createEvent = (event) => ({
 const updateEvent = (event) => ({
   type: UPDATE_EVENT,
   event,
+});
+
+export const clearEvents = () => ({
+  type: CLEAR_EVENTS,
 });
 
 const deleteEvent = (eventId) => ({
@@ -137,7 +142,7 @@ function eventReducer(state = {}, action) {
   const newState = { ...state };
   switch (action.type) {
     case LOAD_EVENTS:
-      action.events.Events.forEach((event) => {
+      action.payload.Events.forEach((event) => {
         newState[event.id] = event;
       });
       return newState;
@@ -161,6 +166,8 @@ function eventReducer(state = {}, action) {
         ...action.event,
       };
       return newState;
+    case CLEAR_EVENTS:
+      return {};
     case DELETE_EVENT:
       delete newState[action.eventId];
       return newState;

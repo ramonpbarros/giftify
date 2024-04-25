@@ -6,6 +6,7 @@ import * as sessionActions from './store/session';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import EventsPage from './components/EventsPage';
+import AllEventsPage from './components/AllEventsPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <SignupFormPage />,
+      },
+      {
+        path: '/events',
+        element: <AllEventsPage />,
       },
     ],
   },

@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom';
 import './EventsPage.css';
 import { useEffect, useState } from 'react';
 import {
+  clearEvents,
   createNewEvent,
-  // getAllEvents,
   getEventById,
   getEventsByCurrentUser,
 } from '../../store/events';
@@ -25,8 +25,11 @@ function EventsPage() {
   const [eventDate, setEventDate] = useState('');
 
   useEffect(() => {
+    dispatch(clearEvents());
     dispatch(getEventsByCurrentUser());
   }, [dispatch]);
+
+  console.log('eventsCurrent: ', eventsCurrent);
 
   const toggleSidebarWidth = () => {
     setSidebarWidth((prevWidth) => (prevWidth === 300 ? 40 : 300));
@@ -107,10 +110,6 @@ function EventsPage() {
           </div>
         </div>
         <div className="background">
-          {console.log(
-            'eventsCurrent[clickedEventId]: ',
-            eventsCurrent[clickedEventId]
-          )}
           {eventsCurrent && (
             <>
               {clickedEventId && (

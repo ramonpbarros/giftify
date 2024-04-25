@@ -35,18 +35,18 @@ module.exports = {
           imgUrl:
             'https://plus.unsplash.com/premium_photo-1684629279389-8fc4beb3236f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGFydHl8ZW58MHx8MHx8fDA%3D',
         },
-        // {
-        //   userId: 2,
-        //   eventName: 'Work Secret Buddy',
-        //   eventDate: '2024-12-13',
-        //   eventDescription:
-        //     'A workplace-oriented Secret Buddy event where participants exchange gifts anonymously with a maximum of 2 attendees.',
-        //   maxGiftCost: null,
-        //   maxAttendees: 10,
-        //   private: true,
-        //   imgUrl:
-        //     'https://plus.unsplash.com/premium_photo-1677490069967-89c7150d6e74?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGFydHl8ZW58MHx8MHx8fDA%3D',
-        // },
+        {
+          userId: 3,
+          eventName: 'Work Secret Buddy',
+          eventDate: '2024-12-13',
+          eventDescription:
+            'A workplace-oriented Secret Buddy event where participants exchange gifts anonymously with a maximum of 2 attendees.',
+          maxGiftCost: null,
+          maxAttendees: 10,
+          private: true,
+          imgUrl:
+            'https://plus.unsplash.com/premium_photo-1677490069967-89c7150d6e74?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGFydHl8ZW58MHx8MHx8fDA%3D',
+        },
         // {
         //   userId: 2,
         //   eventName: 'Work Secret Buddy 2',
@@ -85,7 +85,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        userId: { [Op.in]: [1, 2] },
+        userId: { [Op.in]: [1, 2, 3] },
       },
       {}
     );

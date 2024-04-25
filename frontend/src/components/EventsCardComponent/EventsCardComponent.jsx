@@ -8,7 +8,6 @@ import EditEventModal from '../EditEventModal/EditEventModal';
 function EventsCardComponent({ event }) {
   const sessionUser = useSelector((state) => state.session.user);
   const attendees = event?.Attendees;
-  // console.log('attendees: ', event)
 
   const formattedDate = (dateString) => {
     const [year, month, day] = dateString.split('-');
@@ -26,7 +25,6 @@ function EventsCardComponent({ event }) {
     <>
       <div className="event-card-current">
         <div className="event-image-current">
-          {/* eventsCurrent?.[clickedEventId]?.imgUrl */}
           <img src={event?.imgUrl} alt={event?.eventName} />
         </div>
         <div className="event-details-current">

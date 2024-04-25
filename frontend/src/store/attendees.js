@@ -2,24 +2,30 @@ import { csrfFetch } from './csrf';
 
 const LOAD_ATTENDEES = 'attendee/LOAD_ATTENDEES';
 const REQUEST_ATTENDANCE = 'attendee/REQUEST_ATTENDANCE';
+const CLEAR_ATTENDEES = 'attendee/CLEAR_ATTENDEES';
 const DELETE_ATTENDEE = 'attendee/DELETE_ATTENDEE';
 
-const loadAttendees = (attendeeList) => ({
+const loadAttendees = (payload) => ({
   type: LOAD_ATTENDEES,
-  payload: attendeeList,
+  payload,
 });
 
 const requestAttendance = (attendance) => ({
   type: REQUEST_ATTENDANCE,
-  payload: attendance,
+  attendance,
 });
 
-const deleteAttendee = (attendeeId) => ({
+export const clearAttendees = () => ({
+  type: CLEAR_ATTENDEES,
+});
+
+const deleteAttendee = (eventId, userId) => ({
   type: DELETE_ATTENDEE,
-  payload: attendeeId,
+  eventId,
+  userId,
 });
 
-export const getAllAttendeesEventById = (eventId) => async (dispatch) => {
+export const getAllAttendeesByEventId = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}/attendees`);
 
   if (response.ok) {
@@ -30,7 +36,7 @@ export const getAllAttendeesEventById = (eventId) => async (dispatch) => {
   return response;
 };
 
-export const newRequestAttendance = (eventId) => async (dispatch) => {
+export const requestNewAttendance = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}/attendees`);
 
   if (response.ok) {
@@ -49,42 +55,35 @@ export const removeAttendace = (eventId, userId) => async (dispatch) => {
     }
   );
 
+  const itemData = await response.json();
   if (response.ok) {
-    return dispatch(deleteAttendee(response));
+    dispatch(deleteAttendee(eventId, userId));
+    return itemData;
   }
 };
 
-const initialState = {
-  attendees: [],
-  status: {}
-};
-
-const attendeesReducer = (state = initialState, action) => {
+function attendeesReducer(state = {}, action) {
+  const newState = { ...state };
   switch (action.type) {
     case LOAD_ATTENDEES:
-      return {
-        ...state,
-        attendee: {
-          [action.payload.id]: action.payload,
-        },
-      };
+      action.payload.Attendees.forEach((event) => {
+        newState[event.id] = event;
+      });
+      return newState;
     case REQUEST_ATTENDANCE:
-      return {
-        ...state,
-        status: {
-          [action.payload.id]: action.payload,
-        },
+      newState[action.event.id] = {
+        ...newState[action.event.id],
+        ...action.event,
       };
+      return newState;
+    case CLEAR_ATTENDEES:
+      return {};
     case DELETE_ATTENDEE:
-      return {
-        ...state,
-        attendees: state.attendees.filter(
-          (attendee) => attendee.id !== action.payload
-        ),
-      };
+      delete newState[action.eventId];
+      return newState;
     default:
       return state;
   }
-};
+}
 
 export default attendeesReducer;

@@ -1,0 +1,36 @@
+.search-card {
+  width: 100%;
+  max-width: 300px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 5px solid var(--primary-darker-color);
+}
+
+.search-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.search-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.search-details {
+  padding: 20px;
+  color: var(--neutral-tertiary-color);
+}
+
+.search-details h1 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.search-details p {
+  margin-bottom: 8px;
+}

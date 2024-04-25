@@ -11,8 +11,52 @@ function Navigation({ isLoaded }) {
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">
-          <NavLink to="/" className="navbar-link">
+          <NavLink
+            to="/"
+            className="navbar-link"
+            style={({ isActive, isPending, isTransitioning }) => ({
+              fontWeight: isPending ? 'bold' : '',
+              color: isActive ? '#bf94ff' : '#dbd8e3',
+              viewTransitionName: isTransitioning ? 'slide' : '',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+              ':hover': {
+                color: 'lightgray',
+              },
+            })}
+          >
             Giftify
+          </NavLink>
+        </li>
+        <li className="navbar-item">
+          <NavLink
+            to="/events"
+            className="navbar-link"
+            style={({ isActive, isPending, isTransitioning }) => ({
+              fontWeight: isPending ? 'bold' : '',
+              color: isActive ? '#bf94ff' : '#dbd8e3',
+              viewTransitionName: isTransitioning ? 'slide' : '',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+            })}
+          >
+            Events
+          </NavLink>
+          <NavLink
+            to="/wislists"
+            className="navbar-link"
+            style={({ isActive, isPending, isTransitioning }) => ({
+              fontWeight: isPending ? 'bold' : '',
+              color: isActive ? '#bf94ff' : '#dbd8e3',
+              viewTransitionName: isTransitioning ? 'slide' : '',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+              ':hover': {
+                color: 'lightgray',
+              },
+            })}
+          >
+            Wishlists
           </NavLink>
         </li>
         {isLoaded && (
@@ -31,7 +75,7 @@ function Navigation({ isLoaded }) {
             className="navbar-link"
             style={({ isActive, isPending, isTransitioning }) => ({
               fontWeight: isPending ? 'bold' : '',
-              color: isActive ? '#743ae7' : 'white',
+              color: isActive ? '#bf94ff' : 'white',
               viewTransitionName: isTransitioning ? 'slide' : '',
               textDecoration: 'none',
               transition: 'color 0.2s',

@@ -36,6 +36,11 @@ module.exports = {
           eventId: 1,
           status: 'attending',
         },
+        {
+          userId: 3,
+          eventId: 3,
+          status: 'attending',
+        },
       ]);
     } catch (error) {
       console.error('Error during Attendee bulkCreate:', error);

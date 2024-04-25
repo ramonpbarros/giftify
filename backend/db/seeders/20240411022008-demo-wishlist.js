@@ -31,6 +31,10 @@ module.exports = {
           attendeeId: 5,
           eventId: 1,
         },
+        {
+          attendeeId: 6,
+          eventId: 3,
+        },
       ]);
     } catch (error) {
       console.error('Error during Attendee bulkCreate:', error);
@@ -43,7 +47,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        attendeeId: { [Op.in]: [1, 2, 4, 5] },
+        attendeeId: { [Op.in]: [1, 2, 4, 5, 6] },
       },
       {}
     );
