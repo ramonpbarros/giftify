@@ -11,9 +11,6 @@ function EventAttendeesComponent({ attendees, event }) {
   const [expandedItem, setExpandedItem] = useState(null);
   const products = useSelector((state) => state.products.productsList.Products);
 
-  // console.log('attendees: ', attendees)
-  // console.log('event: ', event)
-
   const toggleItem = (attendeeId) => {
     const selectedIndex = attendees.findIndex(
       (attendee) => attendee.Wishlist?.id === attendeeId

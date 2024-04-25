@@ -29,8 +29,6 @@ function EventsPage() {
     dispatch(getEventsByCurrentUser());
   }, [dispatch]);
 
-  console.log('eventsCurrent: ', eventsCurrent);
-
   const toggleSidebarWidth = () => {
     setSidebarWidth((prevWidth) => (prevWidth === 300 ? 40 : 300));
   };
