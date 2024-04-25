@@ -22,6 +22,7 @@ const validateCreateEvent = [
       return true;
     }),
   check('private')
+    .optional()
     .exists()
     .notEmpty()
     .withMessage('Privacy status is required'),
@@ -53,9 +54,7 @@ const validateEditEvent = [
     .exists()
     .isLength({ max: 50 })
     .withMessage('Event name must be less than 50 characters'),
-  check('eventDescription')
-    .optional()
-    .exists(),
+  check('eventDescription').optional().exists(),
   check('eventDate')
     .optional()
     .exists()
@@ -66,9 +65,7 @@ const validateEditEvent = [
       }
       return true;
     }),
-  check('private')
-    .optional()
-    .exists(),
+  check('private').optional().exists(),
   check('maxGiftCost')
     .optional()
     .exists()
@@ -93,11 +90,11 @@ const validateEditEvent = [
 
 const validateCreateProduct = [
   check('wishlistId')
-  .exists()
-  .notEmpty()
-  .withMessage('Wishlist id is required')
-  .isInt({ min: 1 })
-  .withMessage('Wishlist id must be an integer greater than 0'),
+    .exists()
+    .notEmpty()
+    .withMessage('Wishlist id is required')
+    .isInt({ min: 1 })
+    .withMessage('Wishlist id must be an integer greater than 0'),
   check('productName')
     .exists()
     .notEmpty()

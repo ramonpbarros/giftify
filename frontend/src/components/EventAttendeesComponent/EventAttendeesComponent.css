@@ -1,0 +1,98 @@
+.attendees-container {
+  padding: 1em 1em;
+  margin: 0 1em;
+  background-color: var(--neutral-tertiary-color);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.attendees-header {
+  margin-bottom: 1em;
+}
+
+.attendees-list {
+  padding: 0;
+}
+
+.attendees-item {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 1px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.attendees-item:hover {
+  background-color: #e0e0e0;
+}
+
+.attendees-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attendees-btns {
+  display: flex;
+  justify-content: end;
+}
+
+.attendee-details {
+  padding: 8px;
+}
+
+.delete {
+  background: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0.5em 0;
+  border-radius: 5px;
+  color: black;
+  transition: 0.4s ease;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  /* z-index: 1; */
+}
+
+.delete-content {
+  border: 1px solid black;
+  background-image: linear-gradient(to right, transparent 50%, #d22525 50%);
+  background-size: 200%;
+  background-position: 0%;
+}
+
+.delete-content:hover {
+  border-color: white;
+  color: white;
+  background-position: 100%;
+}
+
+.edit {
+  background: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0.5em 0.5em;
+  border-radius: 5px;
+  color: black;
+  transition: 0.4s ease;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  /* z-index: 1; */
+}
+
+.edit-content {
+  border: 1px solid black;
+  background-image: linear-gradient(to right, transparent 50%, #7e3cff 50%);
+  background-size: 200%;
+  background-position: 0%;
+}
+
+.edit-content:hover {
+  border-color: white;
+  color: white;
+  background-position: 100%;
+}

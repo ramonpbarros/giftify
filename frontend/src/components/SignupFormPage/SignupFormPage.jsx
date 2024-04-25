@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+  import { useNavigate, Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './SignupFormPage.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +22,8 @@ function SignupFormPage() {
       emailInput.blur();
     }
   }, []);
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

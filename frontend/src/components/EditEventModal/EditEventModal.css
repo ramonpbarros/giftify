@@ -1,0 +1,125 @@
+.edit-event-container {
+  /* width: 400px; */
+  padding: 30px;
+  background-color: var(--primary-color);
+  color: var(--neutral-tertiary-color);
+  border: 5px solid var(--primary-darker-color);
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.edit-event-container h3 {
+  /* margin-top: 0;
+  margin-bottom: 20px; */
+  margin: 0 0 20px 0;
+}
+
+.edit-event-container label {
+  /* color: var(--neutral-white-color); */
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+}
+
+.edit-event-container form {
+  display: flex;
+  flex-direction: column;
+  /* color: var(--neutral-white-color);
+  text-align: start; */
+}
+
+.edit-event-container input {
+  margin: 1em 0;
+  color: var(--neutral-white-color);
+  font-family: var(--font-family-form);
+  font-weight: var(--font-weight-bold);
+  width: 95%;
+  padding: 10px;
+  border: 1px solid var(--accent-color-gold);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.edit-event-container input:hover,
+.edit-event-container input:focus {
+  border-color: #7c5a03;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  outline: none;
+}
+
+.edit-event-container input::placeholder {
+  color: var(--neutral-white-color);
+  font-family: var(--font-family-secondary);
+}
+
+.edit-event-container textarea {
+  margin: 1em 0;
+  color: var(--neutral-white-color);
+  font-family: var(--font-family-form);
+  font-weight: var(--font-weight-bold);
+  width: 95%;
+  padding: 10px;
+  border: 1px solid var(--accent-color-gold);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.edit-event-container textarea:hover,
+.edit-event-container textarea:focus {
+  border-color: #7c5a03;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  outline: none;
+}
+
+.edit-event-container textarea::placeholder {
+  color: var(--neutral-white-color);
+  font-family: var(--font-family-secondary);
+}
+
+.edit-event-container .btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2em;
+}
+
+.btn-delete {
+  color: var(--neutral-white-color);
+  background-color: var(--accent-color-red);
+  font-family: var(--font-family-primary);
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s ease, font-size 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: rgba(96, 17, 17, 0.9);
+}
+
+.btn-save {
+  color: var(--neutral-black-color);
+  background-color: var(--neutral-gray-color);
+  font-family: var(--font-family-primary);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+  background-color: var(--neutral-dark-gray);
+  color: var(--neutral-white-color);
+}
