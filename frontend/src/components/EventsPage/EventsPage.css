@@ -5,7 +5,7 @@
 .sidebar {
   background-color: var(--neutral-tertiary-color);
   padding: 5px;
-  min-height: calc(100vh -60px);
+  min-height: 100vh;
 }
 
 .sidebar form {
