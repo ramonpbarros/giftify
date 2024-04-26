@@ -1,89 +1,79 @@
 # Giftify
+
 > Giftify is a comprehensive gifting platform that enables users to create, share, and exchange wishlists for various occasions. With a focus on user engagement, convenience, and community interaction, Giftify aims to revolutionize the way people celebrate special events and share meaningful gifts with friends, family, and colleagues.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://giftify-bgc5.onrender.com). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Screenshots](#screenshots)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
+
+- [General Info](#general-information)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 <!-- * [License](#license) -->
 
-
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
+Giftify provides users with a platform to create and manage wishlists for various events and occasions. It aims to simplify the process of gift-giving by allowing users to share their wishlists with friends and family, making it easier for others to find the perfect gift.
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
 
+- React
+- Redux
+- Node.js
+- Express
+- PostgreSQL
 
 ## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
 
+- User authentication and authorization
+- Wishlist creation and management
+- Event creation and management
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+
+![Example screenshot](./frontend/public/img/screenshot.png)
+![Example screenshot](./frontend/public/img/screenshot1.png)
+
 <!-- If you have screenshots you'd like to share, include them here. -->
 
-
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
 
-Proceed to describe how to install / setup one's local environment / get started with the project.
+To run Giftify locally, follow these steps:
 
+- Install dependencies using `npm install`.
+- Set up your PostgreSQL database and configure the `.env` file with your database credentials.
+- Run the development server using `npm start`.
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
 
-`write-your-code-here`
+Giftify allows users to:
 
+- Create an account and log in.
+- Create and manage wishlists for different events.
+- Invite friends and family to view and contribute to their wishlists.
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
 
+Giftify is currently _in development_. It is functional and usable, but there are ongoing improvements and features being added.
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
 
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
+- Improve user interface and experience.
+- Enhance search and recommendation features.
+- Implement additional social sharing options.
+- Optimize performance and scalability.
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
 
+- This project was inspired by the desire to simplify the gift-giving process and enhance the experience of both gift givers and recipients.
+- Special thanks to the developers and contributors of the libraries and tools used in this project.
 
 ## Contact
+
 Created by [Ramon Barros](https://github.com/ramonpbarros) - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
