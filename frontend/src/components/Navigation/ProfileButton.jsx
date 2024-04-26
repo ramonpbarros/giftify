@@ -40,7 +40,6 @@ function ProfileButton({ user }) {
     setShowMenu(!showMenu);
   };
 
-
   const menuClassName = 'profile-dropdown' + (showMenu ? ' hidden' : '');
 
   return (
@@ -55,18 +54,23 @@ function ProfileButton({ user }) {
               <p>Hello, {user.firstName || user.username}</p>
             </div>
             <Link
-              className="nav-btn2"
-              to="events/current"
+              className="edit edit-content"
+              style={{
+                textDecoration: 'none',
+                color: '#dbd8e3',
+                borderColor: '#dbd8e3',
+                fontSize:'14px'
+              }}
+              to="/"
               onClick={(e) => {
                 e.preventDefault();
+                alert('Feature Coming soon...')
                 closeMenu();
-                navigate('events/current');
+                navigate('/');
               }}
             >
-              Manage Events
+              Manage Profile
             </Link>
-
-            <Link>Profile</Link>
             <div className="custom-hr"></div>
             <button className="btn btn-content" onClick={logout}>
               <MdLogout />
