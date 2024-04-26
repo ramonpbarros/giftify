@@ -1,15 +1,26 @@
 .search-event-container {
   background-color: var(--neutral-tertiary-color);
   margin-top: 0;
-  padding-top: 1em;
-  height: calc(100vh - 60px);
+  /* padding-top: 1em;
+   */
+  padding: 1em;
+  min-height: calc(100vh - 60px);
+}
+.search-event {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next row */
+  justify-content: space-between; /* Distributes items evenly across the container */
+  margin: 1em;
 }
 
-.search-event {
+.OpenModalItem {
+  width: calc(25% - 1em); /* Four items per row */
+}
+/* .search-event {
   display: flex;
   flex-direction: row;
   margin: 1em;
-}
+} */
 .input-search {
   justify-content: center;
   display: flex;

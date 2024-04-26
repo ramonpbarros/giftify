@@ -23,6 +23,9 @@ function EventsPage() {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventDate, setEventDate] = useState('');
+  const [maxGiftCost, setMaxGiftCost] = useState('');
+  const [maxAttendees, setMaxAttendees] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -41,21 +44,30 @@ function EventsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
 
-    const newEvent = { eventName, eventDescription, eventDate };
+    const newEvent = {
+      eventName,
+      eventDescription,
+      eventDate,
+      imgUrl,
+      maxAttendees,
+      maxGiftCost,
+    };
 
-    if (eventName && eventDescription && eventDate) {
-      await dispatch(createNewEvent(newEvent)).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.message) {
-          setErrors(data.errors);
-        }
-      });
+    await dispatch(createNewEvent(newEvent)).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.message) {
+        setErrors(data.errors);
+      }
+    });
 
-      setEventName('');
-      setEventDescription('');
-      setEventDate('');
-    }
+    setEventName('');
+    setEventDescription('');
+    setEventDate('');
+    setMaxGiftCost('');
+    setMaxAttendees('');
+    setImgUrl('');
   };
 
   if (!sessionUser) return <Navigate to="/signup" replace={true} />;
@@ -76,26 +88,43 @@ function EventsPage() {
                   type="text"
                   value={eventName}
                   onChange={(e) => setEventName(e.target.value)}
-                  required
                 />
                 <input
                   placeholder={'Description'}
                   type="text"
                   value={eventDescription}
                   onChange={(e) => setEventDescription(e.target.value)}
-                  required
                 />
                 <input
                   placeholder={'Date'}
                   type="date"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
-                  required
+                />
+                <input
+                  placeholder={'Max Gift Cost'}
+                  type="number"
+                  value={maxGiftCost}
+                  onChange={(e) => setMaxGiftCost(e.target.value)}
+                />
+                <input
+                  placeholder={'Max Attendees'}
+                  type="number"
+                  value={maxAttendees}
+                  onChange={(e) => setMaxAttendees(e.target.value)}
+                />
+                <input
+                  placeholder={'Image Link'}
+                  type="text"
+                  value={imgUrl}
+                  onChange={(e) => setImgUrl(e.target.value)}
                 />
                 {Object.keys(errors).length > 0 && (
                   <>
                     <small className="error">{errors.eventName}</small>
+                    <br />
                     <small className="error">{errors.eventDescription}</small>
+                    <br />
                     <small className="error">{errors.eventDate}</small>
                   </>
                 )}
@@ -115,7 +144,7 @@ function EventsPage() {
             </div>
           )}
           <div className="event-tile">
-            {sessionUser &&
+            {/* {sessionUser &&
               eventsCurrent &&
               Object.keys(eventsCurrent).map((eventId) => (
                 <EventsTileComponent
@@ -124,7 +153,29 @@ function EventsPage() {
                   sidebarWidth={sidebarWidth}
                   onClick={() => handleEventClick(eventId)}
                 />
-              ))}
+              ))} */}
+            {sessionUser &&
+            eventsCurrent &&
+            Object.keys(eventsCurrent).length > 0 ? (
+              Object.keys(eventsCurrent).map((eventId) => {
+                return (
+                  <EventsTileComponent
+                    key={eventId}
+                    event={eventsCurrent[eventId]}
+                    sidebarWidth={sidebarWidth}
+                    onClick={() => handleEventClick(eventId)}
+                  />
+                );
+              })
+            ) : (
+              <p
+                className="no-wishlists"
+                style={{ display: sidebarWidth === 40 ? 'none' : 'block' }}
+              >
+                You&apos;re not currently part of any events. Go ahead and
+                create a new event!
+              </p>
+            )}
           </div>
         </div>
         <div className="background">

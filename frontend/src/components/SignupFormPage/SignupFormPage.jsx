@@ -24,6 +24,7 @@ function SignupFormPage() {
   }, []);
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
@@ -44,7 +45,7 @@ function SignupFormPage() {
         })
       );
 
-      if (!serverResponse) {
+      if (serverResponse.errors) {
         setErrors(serverResponse);
       } else {
         navigate('/');
@@ -83,7 +84,9 @@ function SignupFormPage() {
               <h3>
                 Get ready to experience the power of gifting with Giftify:
               </h3>
-              {errors.server && <p>{errors.server}</p>}
+              {errors.server && (
+                <small style={{ color: '#bc1313' }}>{errors.server}</small>
+              )}
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
@@ -115,19 +118,19 @@ function SignupFormPage() {
                   and Privacy Policy.
                 </small>
                 <br />
-                {errors.username && (
+                {errors && errors.username && (
                   <small style={{ color: '#bc1313' }}>{errors.username}</small>
                 )}
                 <br />
-                {errors.email && (
+                {errors && errors.email && (
                   <small style={{ color: '#bc1313' }}>{errors.email}</small>
                 )}
                 <br />
-                {errors.password && (
+                {errors && errors.password && (
                   <small style={{ color: '#bc1313' }}>{errors.password}</small>
                 )}
                 <br />
-                {errors.confirmPassword && (
+                {errors && errors.confirmPassword && (
                   <small style={{ color: '#bc1313' }}>
                     {errors.confirmPassword}
                   </small>

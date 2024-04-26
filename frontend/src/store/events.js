@@ -65,7 +65,14 @@ export const getEventsByCurrentUser = () => async (dispatch) => {
 };
 
 export const createNewEvent =
-  ({ eventName, eventDescription, eventDate }) =>
+  ({
+    eventName,
+    eventDescription,
+    eventDate,
+    imgUrl,
+    maxAttendees,
+    maxGiftCost,
+  }) =>
   async (dispatch) => {
     const response = await csrfFetch('/api/events', {
       method: 'POST',
@@ -73,11 +80,15 @@ export const createNewEvent =
         eventName,
         eventDescription,
         eventDate,
+        imgUrl,
+        maxAttendees,
+        maxGiftCost,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
+      console.log('data: ', data)
       dispatch(createEvent(data));
       return data;
     }

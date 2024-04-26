@@ -59,7 +59,7 @@ function WishlistsPage() {
             </div>
           )}
           <div className="wishlist-tile">
-            {sessionUser &&
+            {/* {sessionUser &&
               wishlistsCurrent &&
               Object.keys(wishlistsCurrent).map((wishlistId) => {
                 const wishlist = wishlistsCurrent[wishlistId];
@@ -73,7 +73,33 @@ function WishlistsPage() {
                     onClick={() => handleWishlistClick(wishlistId)}
                   />
                 );
-              })}
+              })} */}
+              <hr />
+            {sessionUser &&
+            wishlistsCurrent &&
+            Object.keys(wishlistsCurrent).length > 0 ? (
+              Object.keys(wishlistsCurrent).map((wishlistId) => {
+                const wishlist = wishlistsCurrent[wishlistId];
+                const event = events[wishlist.eventId];
+                return (
+                  <WishlistTileComponent
+                    key={wishlistId}
+                    wishlist={wishlist}
+                    event={event}
+                    sidebarWidth={sidebarWidth}
+                    onClick={() => handleWishlistClick(wishlistId)}
+                  />
+                );
+              })
+            ) : (
+              <p
+                className="no-wishlists"
+                style={{ display: sidebarWidth === 40 ? 'none' : 'block' }}
+              >
+                You&apos;re not currently part of any events, so there are no
+                wishlists to display yet.
+              </p>
+            )}
           </div>
         </div>
         <div className="background">
