@@ -42,7 +42,7 @@ function SearchCardComponent({ event, eventId }) {
               <img src={event?.imgUrl} alt={event?.eventName} />
             ) : (
               <img
-                src="../../../public/img/giftify.png"
+                src="https://res.cloudinary.com/drv1e8rjp/image/upload/v1714153082/Giftify_jvtlqv.png"
                 alt={event?.eventName}
               />
             )}

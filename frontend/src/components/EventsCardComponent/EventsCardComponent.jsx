@@ -21,7 +21,7 @@ function EventsCardComponent({ event }) {
           {event && event.imgUrl ? (
             <img src={event?.imgUrl} alt={event?.eventName} />
           ) : (
-            <img src="../../../public/img/giftify.png" alt={event?.eventName} />
+            <img src="https://res.cloudinary.com/drv1e8rjp/image/upload/v1714153082/Giftify_jvtlqv.png" alt={event?.eventName} />
           )}
         </div>
         <div className="event-details-current">

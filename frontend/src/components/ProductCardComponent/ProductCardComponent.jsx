@@ -13,7 +13,10 @@ function ProductCard({ product, wishlist }) {
         {product && product.productImgUrl ? (
           <img src={product?.productImgUrl} alt={product?.productName} />
         ) : (
-          <img src="../../../public/img/giftify.png" alt={product?.eventName} />
+          <img
+            src="https://res.cloudinary.com/drv1e8rjp/image/upload/v1714153082/Giftify_jvtlqv.png"
+            alt={product?.eventName}
+          />
         )}
       </div>
       <div className="product-details">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-  import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './SignupFormPage.css';
 
@@ -24,9 +24,9 @@ function SignupFormPage() {
   }, []);
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
 
     if (password !== confirmPassword) {
       return setErrors({
@@ -35,20 +35,53 @@ function SignupFormPage() {
       });
     }
 
-    const serverResponse = await dispatch(
-      sessionActions.signup({
-        email,
-        username,
-        password,
-      })
-    );
+    try {
+      const serverResponse = await dispatch(
+        sessionActions.signup({
+          email,
+          username,
+          password,
+        })
+      );
 
-    if (!serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      navigate('/');
+      if (!serverResponse) {
+        setErrors(serverResponse);
+      } else {
+        navigate('/');
+      }
+    } catch (error) {
+      const data = await error.json();
+      if (data?.errors) {
+        setErrors(data.errors);
+      }
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setErrors({});
+
+  //   if (password !== confirmPassword) {
+  //     return setErrors({
+  //       confirmPassword:
+  //         'Confirm Password field must be the same as the Password field',
+  //     });
+  //   }
+
+  //   const serverResponse = await dispatch(
+  //     sessionActions.signup({
+  //       email,
+  //       username,
+  //       password,
+  //     })
+  //   );
+
+  //   if (!serverResponse) {
+  //     setErrors(serverResponse);
+  //   } else {
+  //     navigate('/');
+  //   }
+  // };
 
   return (
     <>
@@ -76,11 +109,6 @@ function SignupFormPage() {
               <h3>
                 Get ready to experience the power of gifting with Giftify:
               </h3>
-              {/* <p>
-                Choose your username carefully! It should be 1 to 20 characters
-                long, containing only letters (a to z), numbers (0 to 9),
-                hyphens, or underscores.
-              </p>{' '} */}
               {errors.server && <p>{errors.server}</p>}
               <form onSubmit={handleSubmit}>
                 <input
@@ -88,38 +116,48 @@ function SignupFormPage() {
                   value={username}
                   placeholder="Username"
                   onChange={(e) => setUsername(e.target.value)}
-                  required
                 />
-                {errors.username && <p>{errors.username}</p>}
                 <input
                   type="text"
                   value={email}
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
-                {errors.email && <p>{errors.email}</p>}
                 <input
                   type="password"
                   className="input_bg"
                   value={password}
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                  required
                 />
-                {errors.password && <p>{errors.password}</p>}
                 <input
                   type="password"
                   value={confirmPassword}
                   placeholder="Confirm Password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
                 />
-                {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 <small>
                   By clicking below, you agree to abide by our Terms of Service
                   and Privacy Policy.
                 </small>
+                <br />
+                {errors.username && (
+                  <small style={{ color: '#bc1313' }}>{errors.username}</small>
+                )}
+                <br />
+                {errors.email && (
+                  <small style={{ color: '#bc1313' }}>{errors.email}</small>
+                )}
+                <br />
+                {errors.password && (
+                  <small style={{ color: '#bc1313' }}>{errors.password}</small>
+                )}
+                <br />
+                {errors.confirmPassword && (
+                  <small style={{ color: '#bc1313' }}>
+                    {errors.confirmPassword}
+                  </small>
+                )}
                 <button className="btn btn-content" type="submit">
                   Sign Up
                 </button>

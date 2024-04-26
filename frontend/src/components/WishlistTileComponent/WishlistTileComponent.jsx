@@ -19,12 +19,15 @@ function WishlistTileComponent({ event, sidebarWidth, onClick }) {
         <div
           className="event-image"
           style={{
-            backgroundImage: `url('../../../public/img/giftify.png')`,
+            backgroundImage: `url('https://res.cloudinary.com/drv1e8rjp/image/upload/v1714153082/Giftify_jvtlqv.png')`,
             backgroundSize: 'cover',
           }}
         >
           {sidebarWidth == 40 && (
-            <img src="../../../public/img/giftify.png" alt={event.eventName} />
+            <img
+              src="https://res.cloudinary.com/drv1e8rjp/image/upload/v1714153082/Giftify_jvtlqv.png"
+              alt={event.eventName}
+            />
           )}
         </div>
       )}

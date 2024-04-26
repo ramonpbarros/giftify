@@ -59,12 +59,12 @@ function ProfileButton({ user }) {
                 textDecoration: 'none',
                 color: '#dbd8e3',
                 borderColor: '#dbd8e3',
-                fontSize:'14px'
+                fontSize: '14px',
               }}
               to="/"
               onClick={(e) => {
                 e.preventDefault();
-                alert('Feature Coming soon...')
+                alert('Feature Coming soon...');
                 closeMenu();
                 navigate('/');
               }}
