@@ -25,9 +25,15 @@ function ProductCard({ product, wishlist }) {
         <p>
           <strong>Price: </strong>${product.productPrice}
         </p>
-        <a href={product.productLink} target="_blank" rel="noopener noreferrer">
-          More info
-        </a>
+        {product && product.productLink && (
+          <a
+            href={product.productLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            More info
+          </a>
+        )}
         {wishlist && product && (
           <div className="event-btns">
             <OpenModalButton

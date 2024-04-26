@@ -12,13 +12,12 @@ function EditProductModal({ wishlist, product }) {
   const [productDescription, setProductDescription] = useState(
     product.productDescription || ''
   );
-  const [productImageUrl, setProductImageUrl] = useState(
-    product.productImageUrl || ''
+  const [productImgUrl, setProductImgUrl] = useState(
+    product.productImgUrl || ''
   );
   const [productPrice, setProductPrice] = useState(product.productPrice || '');
   const [productLink, setProductLink] = useState(product.productLink || '');
   const [errors, setErrors] = useState({});
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ function EditProductModal({ wishlist, product }) {
         {
           productName,
           productDescription,
-          productImageUrl,
+          productImgUrl,
           productPrice,
           productLink,
         },
@@ -55,7 +54,7 @@ function EditProductModal({ wishlist, product }) {
           <label>
             Name
             <input
-              placeholder={productName}
+              placeholder={productName || 'Product Name'}
               type="text"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
@@ -64,7 +63,7 @@ function EditProductModal({ wishlist, product }) {
           <label>
             Description
             <textarea
-              placeholder="Product Description"
+              placeholder={productDescription || 'Product Description'}
               value={productDescription}
               onChange={(e) => setProductDescription(e.target.value)}
               rows={4}
@@ -74,7 +73,7 @@ function EditProductModal({ wishlist, product }) {
           <label>
             Product Price
             <input
-              placeholder="Product price"
+              placeholder={productPrice || 'Product Price'}
               type="number"
               value={productPrice}
               onChange={(e) => setProductPrice(e.target.value)}
@@ -83,16 +82,16 @@ function EditProductModal({ wishlist, product }) {
           <label>
             Image Link
             <input
-              placeholder="Image Link"
+              placeholder={productImgUrl || 'Image Link'}
               type="text"
-              value={productImageUrl}
-              onChange={(e) => setProductImageUrl(e.target.value)}
+              value={productImgUrl}
+              onChange={(e) => setProductImgUrl(e.target.value)}
             />
           </label>
           <label>
             Product Link
             <input
-              placeholder="Product Link"
+              placeholder={productLink || 'Product Link'}
               type="text"
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}

@@ -8,19 +8,15 @@
 }
 .search-event {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap to the next row */
-  justify-content: space-between; /* Distributes items evenly across the container */
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 1em;
 }
 
 .OpenModalItem {
   width: calc(25% - 1em); /* Four items per row */
 }
-/* .search-event {
-  display: flex;
-  flex-direction: row;
-  margin: 1em;
-} */
+
 .input-search {
   justify-content: center;
   display: flex;

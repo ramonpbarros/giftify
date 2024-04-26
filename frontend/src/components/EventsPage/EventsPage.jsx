@@ -144,16 +144,6 @@ function EventsPage() {
             </div>
           )}
           <div className="event-tile">
-            {/* {sessionUser &&
-              eventsCurrent &&
-              Object.keys(eventsCurrent).map((eventId) => (
-                <EventsTileComponent
-                  key={eventId}
-                  event={eventsCurrent[eventId]}
-                  sidebarWidth={sidebarWidth}
-                  onClick={() => handleEventClick(eventId)}
-                />
-              ))} */}
             {sessionUser &&
             eventsCurrent &&
             Object.keys(eventsCurrent).length > 0 ? (

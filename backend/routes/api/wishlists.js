@@ -339,7 +339,7 @@ router.post(
     const {
       productName,
       productDescription,
-      productImageUrl,
+      productImgUrl,
       productPrice,
       productLink,
     } = req.body;
@@ -348,7 +348,7 @@ router.post(
       wishlistId: parseInt(wishlistId),
       productName,
       productDescription,
-      productImageUrl,
+      productImgUrl,
       productPrice,
       productLink,
     });

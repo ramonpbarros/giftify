@@ -5,9 +5,9 @@ import { getEventById } from '../../store/events';
 import WishlistCardComponent from '../WishlistCardComponent';
 import { HiLogin } from 'react-icons/hi';
 import { HiLogout } from 'react-icons/hi';
-import './WishlistsPage.css';
 import { getWishlistsByCurrentUser } from '../../store/wishlists';
 import WishlistTileComponent from '../WishlistTileComponent';
+import './WishlistsPage.css';
 
 function WishlistsPage() {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function WishlistsPage() {
   return (
     <>
       <div className="page">
-        <div className="sidebar" style={{ width: sidebarWidth }}>
+        <div className="sidebar-wishlist" style={{ width: sidebarWidth }}>
           {sidebarWidth === 300 ? (
             <>
               <div className="sidebar-header" onClick={toggleSidebarWidth}>
@@ -59,22 +59,7 @@ function WishlistsPage() {
             </div>
           )}
           <div className="wishlist-tile">
-            {/* {sessionUser &&
-              wishlistsCurrent &&
-              Object.keys(wishlistsCurrent).map((wishlistId) => {
-                const wishlist = wishlistsCurrent[wishlistId];
-                const event = events[wishlist.eventId];
-                return (
-                  <WishlistTileComponent
-                    key={wishlistId}
-                    wishlist={wishlist}
-                    event={event}
-                    sidebarWidth={sidebarWidth}
-                    onClick={() => handleWishlistClick(wishlistId)}
-                  />
-                );
-              })} */}
-              <hr />
+            <hr />
             {sessionUser &&
             wishlistsCurrent &&
             Object.keys(wishlistsCurrent).length > 0 ? (
