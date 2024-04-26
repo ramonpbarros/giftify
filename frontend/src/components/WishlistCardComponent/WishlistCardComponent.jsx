@@ -16,6 +16,7 @@ function WishlistCardComponent({ wishlist }) {
   const [productImageUrl, setProductImageUrl] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productLink, setProductLink] = useState('');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(clearProducts());
@@ -34,12 +35,20 @@ function WishlistCardComponent({ wishlist }) {
     };
 
     if (productName && productPrice) {
-      await dispatch(createNewProduct(newProduct, wishlist.id));
-      setProductname('');
-      setProductDescription('');
-      setProductImageUrl('');
-      setProductPrice('');
-      setProductLink('');
+      try {
+        await dispatch(createNewProduct(newProduct, wishlist.id));
+        setProductname('');
+        setProductDescription('');
+        setProductImageUrl('');
+        setProductPrice('');
+        setProductLink('');
+        setErrors({});
+      } catch (res) {
+        const data = await res.json();
+        if (data && data.message) {
+          setErrors(data.errors);
+        }
+      }
     }
   };
 
@@ -88,6 +97,12 @@ function WishlistCardComponent({ wishlist }) {
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
             />
+            {Object.keys(errors).length > 0 && (
+              <>
+                <small className="error">{errors.productName}</small>
+                <small className="error">{errors.productPrice}</small>
+              </>
+            )}
             <button
               className="btn btn-content"
               style={{ marginTop: 0, color: 'black', borderColor: 'black' }}

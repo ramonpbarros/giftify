@@ -18,7 +18,11 @@ function EventsCardComponent({ event }) {
     <>
       <div className="event-card-current">
         <div className="event-image-current">
-          <img src={event?.imgUrl} alt={event?.eventName} />
+          {event && event.imgUrl ? (
+            <img src={event?.imgUrl} alt={event?.eventName} />
+          ) : (
+            <img src="../../../public/img/giftify.png" alt={event?.eventName} />
+          )}
         </div>
         <div className="event-details-current">
           <h1>{event?.eventName}</h1>

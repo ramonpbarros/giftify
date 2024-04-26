@@ -6,8 +6,6 @@ import { removeProduct } from '../../store/products';
 function DeleteProductModal({ wishlistId, productId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  console.log('wishlistId: ', wishlistId);
-  console.log('productId: ', productId);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -26,10 +24,18 @@ function DeleteProductModal({ wishlistId, productId }) {
         <h2>Confirm Delete</h2>
         <p>Are you sure you want to delete this product?</p>
         <div className="btns">
-          <button className="confirm-delete-btn" onClick={handleDelete}>
+          <button
+            className="delete delete-content"
+            style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
+            onClick={handleDelete}
+          >
             Yes (Delete Product)
           </button>
-          <button className="dont-delete-btn" onClick={closeModal}>
+          <button
+            className="edit edit-content"
+            style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
+            onClick={closeModal}
+          >
             No (Keep Product)
           </button>
         </div>

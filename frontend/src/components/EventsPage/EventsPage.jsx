@@ -23,6 +23,7 @@ function EventsPage() {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventDate, setEventDate] = useState('');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(clearEvents());
@@ -40,9 +41,17 @@ function EventsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newEvent = { eventName, eventDescription, eventDate };
+
     if (eventName && eventDescription && eventDate) {
-      await dispatch(createNewEvent(newEvent));
+      await dispatch(createNewEvent(newEvent)).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.message) {
+          setErrors(data.errors);
+        }
+      });
+
       setEventName('');
       setEventDescription('');
       setEventDate('');
@@ -83,7 +92,20 @@ function EventsPage() {
                   onChange={(e) => setEventDate(e.target.value)}
                   required
                 />
-                <button className='edit edit-content' style={{marginLeft: 'auto'}} type="submit">Create Event</button>
+                {Object.keys(errors).length > 0 && (
+                  <>
+                    <small className="error">{errors.eventName}</small>
+                    <small className="error">{errors.eventDescription}</small>
+                    <small className="error">{errors.eventDate}</small>
+                  </>
+                )}
+                <button
+                  className="edit edit-content"
+                  style={{ marginLeft: 'auto' }}
+                  type="submit"
+                >
+                  Create Event
+                </button>
               </form>
               <hr />
             </>

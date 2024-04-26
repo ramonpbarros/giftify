@@ -21,17 +21,18 @@ function EventAttendeesComponent({ attendees, event }) {
     );
 
     if (selectedIndex !== -1) {
-      dispatch(clearProducts())
+      dispatch(clearProducts());
       dispatch(getAllProductsWishId(attendeeId));
     }
   };
 
-  const handleDelete = (eventId, userId) => {
-    dispatch(removeAttendace(eventId, userId));
+  const handleDelete = () => {
+    alert('Feature coming soon..');
+    // dispatch(removeAttendace(eventId, userId));
   };
 
   const handleEdit = () => {
-    alert('yes');
+    alert('Feature coming soon..');
   };
 
   return (

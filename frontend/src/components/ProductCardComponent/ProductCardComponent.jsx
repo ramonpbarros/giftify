@@ -10,7 +10,11 @@ function ProductCard({ product, wishlist }) {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={product.productImgUrl} alt={product.productName} />
+        {product && product.productImgUrl ? (
+          <img src={product?.productImgUrl} alt={product?.productName} />
+        ) : (
+          <img src="../../../public/img/giftify.png" alt={product?.eventName} />
+        )}
       </div>
       <div className="product-details">
         <h2>{product.productName}</h2>

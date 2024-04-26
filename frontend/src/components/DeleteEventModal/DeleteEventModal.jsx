@@ -24,10 +24,18 @@ function DeleteEventModal({ eventId }) {
         <h2>Confirm Delete</h2>
         <p>Are you sure you want to delete this event?</p>
         <div className="btns">
-          <button className="confirm-delete-btn" onClick={handleDelete}>
+          <button
+            className="delete delete-content"
+            style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
+            onClick={handleDelete}
+          >
             Yes (Delete Event)
           </button>
-          <button className="dont-delete-btn" onClick={closeModal}>
+          <button
+            className="edit edit-content"
+            style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
+            onClick={closeModal}
+          >
             No (Keep Event)
           </button>
         </div>

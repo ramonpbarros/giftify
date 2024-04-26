@@ -19,7 +19,6 @@ function EditProductModal({ wishlist, product }) {
   const [productLink, setProductLink] = useState(product.productLink || '');
   const [errors, setErrors] = useState({});
 
-  console.log('productImageUrl: ', productImageUrl)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

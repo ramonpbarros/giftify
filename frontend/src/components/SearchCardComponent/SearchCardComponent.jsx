@@ -29,7 +29,8 @@ function SearchCardComponent({ event, eventId }) {
   };
 
   const handleOnClick = () => {
-    dispatch(requestNewAttendance()).then(closeModal);
+    alert('Feature coming soon...').then(closeModal);
+    // dispatch(requestNewAttendance()).then(closeModal);
   };
 
   return (
@@ -37,7 +38,14 @@ function SearchCardComponent({ event, eventId }) {
       <div className="search-container">
         <div className="search-card">
           <div className="search-image">
-            <img src={event?.imgUrl} alt={event?.eventName} />
+            {event && event.imgUrl ? (
+              <img src={event?.imgUrl} alt={event?.eventName} />
+            ) : (
+              <img
+                src="../../../public/img/giftify.png"
+                alt={event?.eventName}
+              />
+            )}
           </div>
           <div className="search-details">
             <h1>{event?.eventName}</h1>

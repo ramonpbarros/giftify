@@ -15,8 +15,6 @@ function WishlistsPage() {
   const wishlistsCurrent = useSelector((state) => state.wishlists);
   const events = useSelector((state) => state.events);
 
-  console.log('wishlistsCurrent: ', wishlistsCurrent);
-
   const [sidebarWidth, setSidebarWidth] = useState(300);
   const [clickedWishlistId, setClickedWishlistId] = useState(null);
 
