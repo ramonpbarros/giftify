@@ -13,7 +13,7 @@ function WishlistCardComponent({ wishlist }) {
   const products = useSelector((state) => state.products);
   const [productName, setProductname] = useState('');
   const [productDescription, setProductDescription] = useState('');
-  const [productImageUrl, setProductImageUrl] = useState('');
+  const [productImgUrl, setProductImgUrl] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productLink, setProductLink] = useState('');
   const [errors, setErrors] = useState({});
@@ -29,7 +29,7 @@ function WishlistCardComponent({ wishlist }) {
     const newProduct = {
       productName,
       productDescription,
-      productImageUrl,
+      productImgUrl,
       productPrice,
       productLink,
     };
@@ -39,7 +39,7 @@ function WishlistCardComponent({ wishlist }) {
         await dispatch(createNewProduct(newProduct, wishlist.id));
         setProductname('');
         setProductDescription('');
-        setProductImageUrl('');
+        setProductImgUrl('');
         setProductPrice('');
         setProductLink('');
         setErrors({});
@@ -77,8 +77,8 @@ function WishlistCardComponent({ wishlist }) {
               className="create-reward-input"
               placeholder={'Image Url'}
               type="text"
-              value={productImageUrl}
-              onChange={(e) => setProductImageUrl(e.target.value)}
+              value={productImgUrl}
+              onChange={(e) => setProductImgUrl(e.target.value)}
             />
           </div>
           <div className="column">
@@ -97,12 +97,6 @@ function WishlistCardComponent({ wishlist }) {
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
             />
-            {Object.keys(errors).length > 0 && (
-              <>
-                <small className="error">{errors.productName}</small>
-                <small className="error">{errors.productPrice}</small>
-              </>
-            )}
             <button
               className="btn btn-content"
               style={{ marginTop: 0, color: 'black', borderColor: 'black' }}
@@ -110,18 +104,31 @@ function WishlistCardComponent({ wishlist }) {
             >
               Add Product
             </button>
+            {Object.keys(errors).length > 0 && (
+              <>
+                <small className="error">{errors.productName}</small>
+                <small className="error">{errors.productDescription}</small>
+                <small className="error">{errors.productPrice}</small>
+              </>
+            )}
           </div>
         </form>
       </div>
       <div className="wislist-container">
-        {products &&
+        {products && Object.keys(products).length > 0 ? (
           Object.values(products).map((product) => (
             <ProductCardComponent
               key={product.id}
               product={product}
               wishlist={wishlist}
             />
-          ))}
+          ))
+        ) : (
+          <p className="no-wishlists">
+            You don&apos;t have any products in your wishlist yet. Add a
+            product!
+          </p>
+        )}
       </div>
     </>
   );

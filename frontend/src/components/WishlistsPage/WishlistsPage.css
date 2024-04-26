@@ -2,9 +2,10 @@
   display: flex;
 }
 
-.sidebar {
+.sidebar-wishlist {
   background-color: var(--neutral-tertiary-color);
   padding: 5px;
+  min-height: 100vh;
 }
 
 .sidebar-header {
@@ -26,8 +27,14 @@
   background-color: whitesmoke;
   height: calc(100vh - 60px);
   color: black;
+  min-height: 100vh;
 }
 
 .background h3 {
   margin: 0;
+}
+
+.no-wishlists {
+  text-align: center;
+  color: #716b89;
 }

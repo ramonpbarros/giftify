@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   cursor: pointer;
+  margin-bottom: 1em;
 }
 
 .open-modal-card {

@@ -5,13 +5,23 @@ const validateCreateEvent = [
   check('eventName')
     .exists()
     .notEmpty()
-    .withMessage('Event name is required')
+    .custom((value) => {
+      if (!value.trim()) {
+        throw new Error('Event name is required');
+      }
+      return true;
+    })
     .isLength({ max: 50 })
     .withMessage('Event name must be less than 50 characters'),
   check('eventDescription')
     .exists()
     .notEmpty()
-    .withMessage('Event description is required'),
+    .custom((value) => {
+      if (!value.trim()) {
+        throw new Error('Event description is required');
+      }
+      return true;
+    }),
   check('eventDate')
     .exists()
     .notEmpty()
@@ -98,13 +108,23 @@ const validateCreateProduct = [
   check('productName')
     .exists()
     .notEmpty()
-    .withMessage('Product name is required')
+    .custom((value) => {
+      if (!value.trim()) {
+        throw new Error('Product name is required');
+      }
+      return true;
+    })
     .isLength({ max: 50 })
     .withMessage('Product name must be less than 50 characters'),
   check('productDescription')
     .exists()
     .notEmpty()
-    .withMessage('Product description is required'),
+    .custom((value) => {
+      if (!value.trim()) {
+        throw new Error('Product description is required');
+      }
+      return true;
+    }),
   handleValidationErrors,
 ];
 

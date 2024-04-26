@@ -1,15 +1,22 @@
 .search-event-container {
   background-color: var(--neutral-tertiary-color);
   margin-top: 0;
-  padding-top: 1em;
-  height: calc(100vh - 60px);
+  /* padding-top: 1em;
+   */
+  padding: 1em;
+  min-height: calc(100vh - 60px);
 }
-
 .search-event {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 1em;
 }
+
+.OpenModalItem {
+  width: calc(25% - 1em); /* Four items per row */
+}
+
 .input-search {
   justify-content: center;
   display: flex;

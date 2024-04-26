@@ -5,9 +5,9 @@ import { getEventById } from '../../store/events';
 import WishlistCardComponent from '../WishlistCardComponent';
 import { HiLogin } from 'react-icons/hi';
 import { HiLogout } from 'react-icons/hi';
-import './WishlistsPage.css';
 import { getWishlistsByCurrentUser } from '../../store/wishlists';
 import WishlistTileComponent from '../WishlistTileComponent';
+import './WishlistsPage.css';
 
 function WishlistsPage() {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function WishlistsPage() {
   return (
     <>
       <div className="page">
-        <div className="sidebar" style={{ width: sidebarWidth }}>
+        <div className="sidebar-wishlist" style={{ width: sidebarWidth }}>
           {sidebarWidth === 300 ? (
             <>
               <div className="sidebar-header" onClick={toggleSidebarWidth}>
@@ -59,8 +59,10 @@ function WishlistsPage() {
             </div>
           )}
           <div className="wishlist-tile">
+            <hr />
             {sessionUser &&
-              wishlistsCurrent &&
+            wishlistsCurrent &&
+            Object.keys(wishlistsCurrent).length > 0 ? (
               Object.keys(wishlistsCurrent).map((wishlistId) => {
                 const wishlist = wishlistsCurrent[wishlistId];
                 const event = events[wishlist.eventId];
@@ -73,7 +75,16 @@ function WishlistsPage() {
                     onClick={() => handleWishlistClick(wishlistId)}
                   />
                 );
-              })}
+              })
+            ) : (
+              <p
+                className="no-wishlists"
+                style={{ display: sidebarWidth === 40 ? 'none' : 'block' }}
+              >
+                You&apos;re not currently part of any events, so there are no
+                wishlists to display yet.
+              </p>
+            )}
           </div>
         </div>
         <div className="background">

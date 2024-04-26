@@ -102,3 +102,7 @@ body {
 .animate__animated.animate__bounce {
   --animate-duration: 2s;
 }
+
+.error {
+  color: #bc1313;
+}

@@ -72,7 +72,7 @@ export const createNewProduct =
     {
       productName,
       productDescription,
-      productImageUrl,
+      productImgUrl,
       productPrice,
       productLink,
     },
@@ -84,7 +84,7 @@ export const createNewProduct =
       body: JSON.stringify({
         productName,
         productDescription,
-        productImageUrl,
+        productImgUrl,
         productPrice,
         productLink,
       }),
@@ -102,7 +102,7 @@ export const editProduct =
     {
       productName,
       productDescription,
-      productImageUrl,
+      productImgUrl,
       productPrice,
       productLink,
     },
@@ -117,7 +117,7 @@ export const editProduct =
         body: JSON.stringify({
           productName,
           productDescription,
-          productImageUrl,
+          productImgUrl,
           productPrice,
           productLink,
         }),
