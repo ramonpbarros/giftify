@@ -57,32 +57,6 @@ function SignupFormPage() {
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setErrors({});
-
-  //   if (password !== confirmPassword) {
-  //     return setErrors({
-  //       confirmPassword:
-  //         'Confirm Password field must be the same as the Password field',
-  //     });
-  //   }
-
-  //   const serverResponse = await dispatch(
-  //     sessionActions.signup({
-  //       email,
-  //       username,
-  //       password,
-  //     })
-  //   );
-
-  //   if (!serverResponse) {
-  //     setErrors(serverResponse);
-  //   } else {
-  //     navigate('/');
-  //   }
-  // };
-
   return (
     <>
       <div className="landpage">
