@@ -250,7 +250,14 @@ router.get('/:eventId', requireAuth, async (req, res) => {
 
 // Create Event
 router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
-  const { eventName, eventDescription, eventDate } = req.body;
+  const {
+    eventName,
+    eventDescription,
+    eventDate,
+    imgUrl,
+    maxAttendees,
+    maxGiftCost,
+  } = req.body;
 
   const currentUser = req.user.toJSON();
 
@@ -260,6 +267,9 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
     eventDescription,
     eventDate,
     private: true,
+    imgUrl,
+    maxAttendees,
+    maxGiftCost,
   });
 
   let newAttendee;
@@ -312,6 +322,8 @@ router.post('/', requireAuth, validateCreateEvent, async (req, res) => {
   formattedEvent.eventDate = `${newDateEventDate}`;
   formattedEvent.createdAt = `${newDateCreatedAt} ${newTimeCreatedAt}`;
   formattedEvent.updatedAt = `${newDateUpdatedAt} ${newTimeUpdatedAt}`;
+
+  console.log('formattedEvent: ', formattedEvent);
 
   res.status(201).json(formattedEvent);
 });
