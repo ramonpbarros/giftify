@@ -5,7 +5,7 @@ import { useModal } from '../../context/Modal';
 
 import {
   getAllAttendeesByEventId,
-  requestNewAttendance,
+  // requestNewAttendance,
 } from '../../store/attendees';
 
 function SearchCardComponent({ event, eventId }) {

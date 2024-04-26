@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './EventAttendeesComponent.css';
 import { clearProducts, getAllProductsWishId } from '../../store/products';
 import ProductCardComponent from '../ProductCardComponent/ProductCardComponent';
-import { removeAttendace } from '../../store/attendees';
+// import { removeAttendace } from '../../store/attendees';
 
 function EventAttendeesComponent({ attendees, event }) {
   const dispatch = useDispatch();
