@@ -7,6 +7,48 @@
   padding: 5px;
 }
 
+.sidebar form {
+  max-width: 600px;
+  border-radius: 5px;
+  font-family: var(--font-family-primary);
+  margin: 0 auto;
+}
+
+
+.sidebar input {
+  display: block;
+  margin: 0.5em 0 0 0;
+  color: black;
+  font-family: var(--font-family-primary);
+  width: 92%;
+  padding: 10px;
+  border: 1px solid var(--neutral-tertiary-color);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.sidebar input:hover,
+.sidebar input:focus {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: white;
+  outline: none;
+}
+
+.sidebar input::placeholder {
+  color: black;
+  font-family: var(--font-family-secondary);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+}
+
 .sidebar-header {
   display: flex;
   flex-direction: row;
@@ -21,9 +63,6 @@
   margin-bottom: 5px;
 }
 
-.sidebar-header:hover {
-
-}
 .background {
   flex: 1;
   background-color: whitesmoke;

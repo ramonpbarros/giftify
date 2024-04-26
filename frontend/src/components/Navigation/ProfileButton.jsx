@@ -3,12 +3,8 @@ import { useDispatch } from 'react-redux';
 import { FaRegUser } from 'react-icons/fa';
 import { MdLogout } from 'react-icons/md';
 import * as sessionActions from '../../store/session';
-// import OpenModalMenuItem from './OpenModalMenuItem';
-// import LoginFormModal from '../LoginFormModal';
-// import SignupFormModal from '../SignupFormModal';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navigation.css';
-// import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();

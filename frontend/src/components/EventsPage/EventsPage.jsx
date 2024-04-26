@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import './EventsPage.css';
 import { useEffect, useState } from 'react';
 import {
   clearEvents,
@@ -12,6 +11,7 @@ import EventsCardComponent from '../EventsCardComponent';
 import EventsTileComponent from '../EventsTileComponent';
 import { HiLogin } from 'react-icons/hi';
 import { HiLogout } from 'react-icons/hi';
+import './EventsPage.css';
 
 function EventsPage() {
   const dispatch = useDispatch();
@@ -63,7 +63,6 @@ function EventsPage() {
               </div>
               <form onSubmit={handleSubmit}>
                 <input
-                  className="create-reward-input"
                   placeholder={'Event Name'}
                   type="text"
                   value={eventName}
@@ -71,7 +70,6 @@ function EventsPage() {
                   required
                 />
                 <input
-                  className="create-reward-input"
                   placeholder={'Description'}
                   type="text"
                   value={eventDescription}
@@ -79,15 +77,15 @@ function EventsPage() {
                   required
                 />
                 <input
-                  className="create-reward-input"
                   placeholder={'Date'}
                   type="date"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
                   required
                 />
-                <button type="submit">Create Event</button>
+                <button className='edit edit-content' style={{marginLeft: 'auto'}} type="submit">Create Event</button>
               </form>
+              <hr />
             </>
           ) : (
             <div className="sidebar-header" onClick={toggleSidebarWidth}>

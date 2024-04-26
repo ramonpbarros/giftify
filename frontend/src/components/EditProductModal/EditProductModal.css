@@ -1,4 +1,4 @@
-.edit-event-container {
+.edit-product-container {
   /* width: 400px; */
   padding: 30px;
   background-color: var(--primary-color);
@@ -10,26 +10,26 @@
   height: calc(100vh - 100px);
   overflow-y: auto;
 }
-.edit-event-container h3 {
+.edit-product-container h3 {
   /* margin-top: 0;
   margin-bottom: 20px; */
   margin: 0 0 20px 0;
 }
 
-.edit-event-container label {
+.edit-product-container label {
   /* color: var(--neutral-white-color); */
   font-family: var(--font-family-primary);
   font-size: 16px;
 }
 
-.edit-event-container form {
+.edit-product-container form {
   display: flex;
   flex-direction: column;
   /* color: var(--neutral-white-color);
   text-align: start; */
 }
 
-.edit-event-container input {
+.edit-product-container input {
   margin: 1em 0;
   color: var(--neutral-white-color);
   font-family: var(--font-family-form);
@@ -42,19 +42,19 @@
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
-.edit-event-container input:hover,
-.edit-event-container input:focus {
+.edit-product-container input:hover,
+.edit-product-container input:focus {
   border-color: #7c5a03;
   background-color: rgba(0, 0, 0, 0.5) !important;
   outline: none;
 }
 
-.edit-event-container input::placeholder {
+.edit-product-container input::placeholder {
   color: var(--neutral-white-color);
   font-family: var(--font-family-secondary);
 }
 
-.edit-event-container textarea {
+.edit-product-container textarea {
   margin: 1em 0;
   color: var(--neutral-white-color);
   font-family: var(--font-family-form);
@@ -67,19 +67,19 @@
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
-.edit-event-container textarea:hover,
-.edit-event-container textarea:focus {
+.edit-product-container textarea:hover,
+.edit-product-container textarea:focus {
   border-color: #7c5a03;
   background-color: rgba(0, 0, 0, 0.5) !important;
   outline: none;
 }
 
-.edit-event-container textarea::placeholder {
+.edit-product-container textarea::placeholder {
   color: var(--neutral-white-color);
   font-family: var(--font-family-secondary);
 }
 
-.edit-event-container .btns {
+.edit-product-container .btns {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -99,4 +99,8 @@
   display: block;
   text-align: center;
   transition: background-color 0.3s ease, font-size 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: rgba(96, 17, 17, 0.9);
 }

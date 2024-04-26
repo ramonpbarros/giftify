@@ -7,6 +7,7 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import EventsPage from './components/EventsPage';
 import AllEventsPage from './components/AllEventsPage';
+import WishlistPage from './components/WishlistsPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/events',
         element: <AllEventsPage />,
+      },
+      {
+        path: '/wishlists',
+        element: <WishlistPage />,
       },
     ],
   },

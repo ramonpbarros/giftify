@@ -6,7 +6,6 @@ import { clearAttendees } from '../../store/attendees';
 function OpenModalButton({
   modalComponent,
   event,
-  // onButtonClick,
   onClickEvent,
   onModalClose,
 }) {
@@ -17,7 +16,6 @@ function OpenModalButton({
     if (onModalClose) setOnModalClose(onModalClose);
     dispatch(clearAttendees());
     setModalContent(modalComponent);
-    // if (typeof onButtonClick === 'function') onButtonClick();
     if (typeof onClickEvent === 'function') onClickEvent(event.id);
   };
 
@@ -30,10 +28,10 @@ function OpenModalButton({
           </div>
           <div className="open-modal-details">
             <h1>{event?.eventName}</h1>
-            <p>
+            {/* <p>
               <strong>Description: </strong>
               {event?.eventDescription}
-            </p>
+            </p> */}
             {event?.User?.firstName && event?.User?.lastName ? (
               <p>
                 <strong>Organizer: </strong>

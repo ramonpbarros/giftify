@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import eventsReducer from './events';
 import productsReducer from './products';
 import attendeesReducer from './attendees';
+import wishlistsReducer from './wishlists';
 
 const appReducer = combineReducers({
   session: sessionReducer,
   events: eventsReducer,
   products: productsReducer,
   attendees: attendeesReducer,
+  wishlists: wishlistsReducer,
 });
 
 const rootReducer = (state, action) => {

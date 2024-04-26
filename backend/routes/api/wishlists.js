@@ -100,8 +100,6 @@ router.get('/:wishlistId', requireAuth, async (req, res) => {
       res.status(403);
       res.send({ message: 'Forbidden' });
     }
-
-    // res.json(formattedWishlist);
   } catch (error) {
     console.error('Error fetching events:', error);
     res.status(500).json({ message: 'Internal server error' });

@@ -14,13 +14,6 @@ function EventsCardComponent({ event }) {
     return `${month}/${day}/${year}`;
   };
 
-  // const handleDelete = (eventId) => {
-  //   <OpenModalButton
-  //     buttonText="Delete"
-  //     modalComponent={<DeleteEventModal eventId={eventId} />}
-  //   />;
-  // };
-
   return (
     <>
       <div className="event-card-current">

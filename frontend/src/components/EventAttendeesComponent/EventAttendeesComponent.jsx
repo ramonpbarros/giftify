@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './EventAttendeesComponent.css';
-import { getAllProductsWishId } from '../../store/products';
+import { clearProducts, getAllProductsWishId } from '../../store/products';
 import ProductCardComponent from '../ProductCardComponent/ProductCardComponent';
 import { removeAttendace } from '../../store/attendees';
 
@@ -9,7 +9,7 @@ function EventAttendeesComponent({ attendees, event }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [expandedItem, setExpandedItem] = useState(null);
-  const products = useSelector((state) => state.products.productsList.Products);
+  const products = useSelector((state) => state.products);
 
   const toggleItem = (attendeeId) => {
     const selectedIndex = attendees.findIndex(
@@ -21,6 +21,7 @@ function EventAttendeesComponent({ attendees, event }) {
     );
 
     if (selectedIndex !== -1) {
+      dispatch(clearProducts())
       dispatch(getAllProductsWishId(attendeeId));
     }
   };
@@ -76,7 +77,7 @@ function EventAttendeesComponent({ attendees, event }) {
                   <hr />
                   <h4>Wishlist:</h4>
                   {products &&
-                    products.map((product) => (
+                    Object.values(products).map((product) => (
                       <ProductCardComponent
                         key={product.id}
                         product={product}
