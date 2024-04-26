@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllEvents } from '../../store/events';
 import SearchCardComponent from '../SearchCardComponent';
@@ -7,6 +8,7 @@ import OpenModalItem from '../OpenModalItem';
 
 const AllEventsPage = () => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const events = useSelector((state) => state.events);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -27,6 +29,8 @@ const AllEventsPage = () => {
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  if (!sessionUser) return <Navigate to="/signup" replace={true} />;
 
   return (
     <>

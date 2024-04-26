@@ -14,18 +14,15 @@ function EventsCardComponent({ event }) {
     return `${month}/${day}/${year}`;
   };
 
-  // const handleDelete = (eventId) => {
-  //   <OpenModalButton
-  //     buttonText="Delete"
-  //     modalComponent={<DeleteEventModal eventId={eventId} />}
-  //   />;
-  // };
-
   return (
     <>
       <div className="event-card-current">
         <div className="event-image-current">
-          <img src={event?.imgUrl} alt={event?.eventName} />
+          {event && event.imgUrl ? (
+            <img src={event?.imgUrl} alt={event?.eventName} />
+          ) : (
+            <img src="../../../public/img/giftify.png" alt={event?.eventName} />
+          )}
         </div>
         <div className="event-details-current">
           <h1>{event?.eventName}</h1>

@@ -77,9 +77,9 @@ export const createNewEvent =
     });
 
     if (response.ok) {
-      const event = await response.json();
-      dispatch(createEvent(event));
-      return event;
+      const data = await response.json();
+      dispatch(createEvent(data));
+      return data;
     }
   };
 

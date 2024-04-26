@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
+import './DeleteProductModal.css';
+import { removeProduct } from '../../store/products';
 
-import './DeleteEventModal.css';
-import { removeEvent } from '../../store/events';
-
-function DeleteEventModal({ eventId }) {
+function DeleteProductModal({ wishlistId, productId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -12,31 +11,32 @@ function DeleteEventModal({ eventId }) {
     e.preventDefault();
 
     try {
-      await dispatch(removeEvent(eventId));
+      await dispatch(removeProduct(wishlistId, productId));
       closeModal();
     } catch (error) {
-      console.error('Error deleting event:', error);
+      console.error('Error deleting product:', error);
     }
   };
+
   return (
     <>
       <div className="modal">
         <h2>Confirm Delete</h2>
-        <p>Are you sure you want to delete this event?</p>
+        <p>Are you sure you want to delete this product?</p>
         <div className="btns">
           <button
             className="delete delete-content"
             style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
             onClick={handleDelete}
           >
-            Yes (Delete Event)
+            Yes (Delete Product)
           </button>
           <button
             className="edit edit-content"
             style={{ color: '#dbd8e3', borderColor: '#dbd8e3' }}
             onClick={closeModal}
           >
-            No (Keep Event)
+            No (Keep Product)
           </button>
         </div>
       </div>
@@ -44,4 +44,4 @@ function DeleteEventModal({ eventId }) {
   );
 }
 
-export default DeleteEventModal;
+export default DeleteProductModal;

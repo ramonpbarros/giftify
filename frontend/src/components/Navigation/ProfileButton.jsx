@@ -3,12 +3,8 @@ import { useDispatch } from 'react-redux';
 import { FaRegUser } from 'react-icons/fa';
 import { MdLogout } from 'react-icons/md';
 import * as sessionActions from '../../store/session';
-// import OpenModalMenuItem from './OpenModalMenuItem';
-// import LoginFormModal from '../LoginFormModal';
-// import SignupFormModal from '../SignupFormModal';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navigation.css';
-// import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -44,7 +40,6 @@ function ProfileButton({ user }) {
     setShowMenu(!showMenu);
   };
 
-
   const menuClassName = 'profile-dropdown' + (showMenu ? ' hidden' : '');
 
   return (
@@ -59,18 +54,23 @@ function ProfileButton({ user }) {
               <p>Hello, {user.firstName || user.username}</p>
             </div>
             <Link
-              className="nav-btn2"
-              to="events/current"
+              className="edit edit-content"
+              style={{
+                textDecoration: 'none',
+                color: '#dbd8e3',
+                borderColor: '#dbd8e3',
+                fontSize:'14px'
+              }}
+              to="/"
               onClick={(e) => {
                 e.preventDefault();
+                alert('Feature Coming soon...')
                 closeMenu();
-                navigate('events/current');
+                navigate('/');
               }}
             >
-              Manage Events
+              Manage Profile
             </Link>
-
-            <Link>Profile</Link>
             <div className="custom-hr"></div>
             <button className="btn btn-content" onClick={logout}>
               <MdLogout />

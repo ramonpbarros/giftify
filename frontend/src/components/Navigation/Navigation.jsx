@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
             Events
           </NavLink>
           <NavLink
-            to="/wislists"
+            to="/wishlists"
             className="navbar-link"
             style={({ isActive, isPending, isTransitioning }) => ({
               fontWeight: isPending ? 'bold' : '',

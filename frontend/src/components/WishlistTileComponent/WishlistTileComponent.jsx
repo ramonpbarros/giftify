@@ -1,6 +1,6 @@
-import './EventsTileComponent.css';
+import './WishlistTileComponent.css';
 
-function EventsTileComponent({ event, sidebarWidth, onClick }) {
+function WishlistTileComponent({ event, sidebarWidth, onClick }) {
   return (
     <div className="event-card" onClick={onClick}>
       {event && event.imgUrl ? (
@@ -28,7 +28,6 @@ function EventsTileComponent({ event, sidebarWidth, onClick }) {
           )}
         </div>
       )}
-
       <div
         className="event-details"
         style={{ display: sidebarWidth == 40 ? 'none' : 'block' }}
@@ -39,4 +38,4 @@ function EventsTileComponent({ event, sidebarWidth, onClick }) {
   );
 }
 
-export default EventsTileComponent;
+export default WishlistTileComponent;

@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import './EventsPage.css';
 import { useEffect, useState } from 'react';
 import {
   clearEvents,
@@ -12,6 +11,7 @@ import EventsCardComponent from '../EventsCardComponent';
 import EventsTileComponent from '../EventsTileComponent';
 import { HiLogin } from 'react-icons/hi';
 import { HiLogout } from 'react-icons/hi';
+import './EventsPage.css';
 
 function EventsPage() {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ function EventsPage() {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventDate, setEventDate] = useState('');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(clearEvents());
@@ -40,9 +41,17 @@ function EventsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newEvent = { eventName, eventDescription, eventDate };
+
     if (eventName && eventDescription && eventDate) {
-      await dispatch(createNewEvent(newEvent));
+      await dispatch(createNewEvent(newEvent)).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.message) {
+          setErrors(data.errors);
+        }
+      });
+
       setEventName('');
       setEventDescription('');
       setEventDate('');
@@ -63,7 +72,6 @@ function EventsPage() {
               </div>
               <form onSubmit={handleSubmit}>
                 <input
-                  className="create-reward-input"
                   placeholder={'Event Name'}
                   type="text"
                   value={eventName}
@@ -71,7 +79,6 @@ function EventsPage() {
                   required
                 />
                 <input
-                  className="create-reward-input"
                   placeholder={'Description'}
                   type="text"
                   value={eventDescription}
@@ -79,15 +86,28 @@ function EventsPage() {
                   required
                 />
                 <input
-                  className="create-reward-input"
                   placeholder={'Date'}
                   type="date"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
                   required
                 />
-                <button type="submit">Create Event</button>
+                {Object.keys(errors).length > 0 && (
+                  <>
+                    <small className="error">{errors.eventName}</small>
+                    <small className="error">{errors.eventDescription}</small>
+                    <small className="error">{errors.eventDate}</small>
+                  </>
+                )}
+                <button
+                  className="edit edit-content"
+                  style={{ marginLeft: 'auto' }}
+                  type="submit"
+                >
+                  Create Event
+                </button>
               </form>
+              <hr />
             </>
           ) : (
             <div className="sidebar-header" onClick={toggleSidebarWidth}>

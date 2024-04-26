@@ -6,7 +6,6 @@ import { clearAttendees } from '../../store/attendees';
 function OpenModalButton({
   modalComponent,
   event,
-  // onButtonClick,
   onClickEvent,
   onModalClose,
 }) {
@@ -17,7 +16,6 @@ function OpenModalButton({
     if (onModalClose) setOnModalClose(onModalClose);
     dispatch(clearAttendees());
     setModalContent(modalComponent);
-    // if (typeof onButtonClick === 'function') onButtonClick();
     if (typeof onClickEvent === 'function') onClickEvent(event.id);
   };
 
@@ -26,14 +24,17 @@ function OpenModalButton({
       <div className="open-modal-container" onClick={onClick}>
         <div className="open-modal-card">
           <div className="open-modal-image">
-            <img src={event?.imgUrl} alt={event?.eventName} />
+            {event && event.imgUrl ? (
+              <img src={event?.imgUrl} alt={event?.eventName} />
+            ) : (
+              <img
+                src="../../../public/img/giftify.png"
+                alt={event?.eventName}
+              />
+            )}
           </div>
           <div className="open-modal-details">
             <h1>{event?.eventName}</h1>
-            <p>
-              <strong>Description: </strong>
-              {event?.eventDescription}
-            </p>
             {event?.User?.firstName && event?.User?.lastName ? (
               <p>
                 <strong>Organizer: </strong>
