@@ -77,13 +77,19 @@ function EventAttendeesComponent({ attendees, event }) {
                 <div className="attendee-details">
                   <hr />
                   <h4>Wishlist:</h4>
-                  {products &&
+                  {products && Object.keys(products).length > 0 ? (
                     Object.values(products).map((product) => (
                       <ProductCardComponent
                         key={product.id}
                         product={product}
                       />
-                    ))}
+                    ))
+                  ) : (
+                    <p className="no-wishlists">
+                      You don&apos;t have any products in your wishlist yet. Add
+                      a product at the wishlists tab!
+                    </p>
+                  )}
                 </div>
               )}
             </div>

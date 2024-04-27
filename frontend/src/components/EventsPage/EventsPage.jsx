@@ -126,6 +126,10 @@ function EventsPage() {
                     <small className="error">{errors.eventDescription}</small>
                     <br />
                     <small className="error">{errors.eventDate}</small>
+                    <br />
+                    <small className="error">{errors.maxAttendees}</small>
+                    <br />
+                    <small className="error">{errors.maxGiftCost}</small>
                   </>
                 )}
                 <button
